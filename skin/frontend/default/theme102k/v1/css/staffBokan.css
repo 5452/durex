@@ -1,0 +1,232 @@
+@media screen and (max-width: 760px){
+        .wrapper{
+          width: 100%;
+        }
+        .navbar{
+          padding-top: 30px;
+          font: normal bold 20px "Adobe黑体Std";
+          color: #fff;
+        }
+        .nav-icon{
+          width:8.1%; 
+          margin-left:4.68%; 
+        }
+        .nav-Arrow{
+          margin-left: 12%;
+          margin-right: 3%;
+          width: 5.6%;
+        }
+        .logo1{
+          float: right;
+          width: 24%;
+          margin-top: -30px;
+        }
+        .login-name{
+            font-size: 20px;
+            color: #fff;
+            text-align: right;
+        }
+        .login-name img{
+            width: 5.6%;
+        }
+       .view-order,.continue-custom{
+            position: relative;
+            width: 100%;
+            border-radius: 36px;
+            font-size: 20px;
+            text-align: center;
+       }
+       .view-order img,.continue-custom img{
+            position: absolute;
+            left: 0;
+       }
+
+       .pay-info {
+            color: #fff;
+            margin: 0 auto;
+            padding: 0 10%;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+        }
+
+
+        /*orderCenter*/
+
+        .radius_button{
+          width: 48%;
+        }
+
+        .col-md-2 img{
+          width: 90px;
+        }
+
+        .pro_name{
+          font-size: 12px;
+        }
+
+        .ord_btn2 img,.ord_btn1 img{
+          width: 24%;
+          margin-right: 5px;
+        }
+
+        .ord_btn2,.ord_btn1{
+          font-size: 12px;
+        }
+
+        .pro_action img{
+          width: 11%;
+        }
+
+        .order_state{
+          font-size: 13px;
+        }
+
+        .pro_action em{
+          font-size: 18px;
+          margin-right:0;
+        }
+
+        p.order_state{
+          font-size: 12px;
+        }
+
+        .radius_button{
+          height: auto;
+        }
+    /*orderCenter*/
+
+
+    /*orderDetail*/
+
+        .radius_button{
+          width: 48%;
+        }
+        .page_titile{
+          font-size: 24px;
+          color: #0b5f91;
+          text-align: center;
+        }
+        .payorder_content{
+          width: 100%;
+        }
+        .step2{
+          margin-top: 60px;
+        }
+        .step input{
+          height: 33px;
+        }
+        .goods_detail input{
+          width: 354px;
+          height: 33px;
+        }
+        .goods_detail img{
+          width: 26%;
+        }
+        .goods_detail input{
+          margin-top: 30px;
+        }
+        .step3 input{
+          width: 60%;
+          height: 25px;
+          float: right;
+        }
+        .view_order_pay{
+          float: right;
+        }
+        .time_content{
+          padding-left: 10%;
+        }
+        .step{
+          font-size: 15px;
+        }
+        .price_d{
+          margin-right: 0;
+        }
+        .view_order_pay{
+          width: 60%;
+          font-size: 16px;
+        }
+        .view_order_pay img{
+          width: 20%;
+          margin-right: 5%;
+        }
+
+      /*orderDetail*/
+
+      /*term*/
+        .nav-Arrow{
+          margin-left: 12%;
+          margin-right: 3%;
+          width: 5.6%;
+        }
+        .logo1{
+          float: right;
+          width: 24%;
+          margin-top: -30px;
+        }
+        .term_detail{
+            padding: 0 5%;
+        }
+        .term_paragraph{
+            font-size: 16px;
+        }
+        .btn-close{
+            width: 40%;
+            height: auto;
+            font-size: 16px;
+            line-height: 35px;
+        }
+
+        /*pop_up*/
+
+        /* .wrapper{
+          width: 100%;
+         background: rgb(0,0,0); 
+         background: rgba(0, 0, 0,0.7);
+         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#80000000,endColorstr=#80000000)";     
+         filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=#80000000, endColorstr=#80000000); 
+        }*/
+        .navbar{
+          padding-top: 30px;
+          font: normal bold 20px "Adobe黑体Std";
+          color: #fff;
+        }
+        .nav-icon{
+          width:8.1%; 
+          margin-left:4.68%; 
+        }
+        .nav-Arrow{
+          margin-left: 12%;
+          margin-right: 3%;
+          width: 5.6%;
+        }
+        .logo1{
+          float: right;
+          width: 24%;
+          margin-top: -30px;
+        }
+        .pop_up{
+            position: relative;
+            /*width: 85.15%;*/
+        }
+        .popBtn{
+            width: 38.9%;
+            padding: 4px;
+            height: 25px;
+            line-height: 18px;
+            font-size: 14px;
+        }
+        .popBtn1{
+            margin-left: 5.25%;
+        }
+        .popBtn img{
+            width: 15%;
+            margin-left:15px 
+        }
+        .lead{
+            font-size: 16px;
+        }
+
+
+} 

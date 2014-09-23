@@ -1,0 +1,50 @@
+/* order css */
+h1, h2, h3, h4, h5, h6, p { margin: 0; padding: 0; }
+strong { font-weight: normal; }
+body { font-family: "黑体"; }
+.form_title { position: relative; margin: 20px 0; font-size: 24px; color: #fff; text-align: center; height: 28px; line-height: 28px; }
+.reg { position: absolute; right: 0; top: 0; z-index: 1; margin-right: 10px; width: 125px; font-size: 18px; }
+.reg dd { height: 28px; line-height: 28px; float: left; }
+.reg dd a { color: #fff; }
+.reg dd a:hover { color: #0b5f91; }
+.reg dt { float: right; width: 23px; height: 28px; background: url(../img/reg_ico.png) 0 0 no-repeat; }
+.form_subTitle { position: relative; padding-left: 28px; height: 32px; line-height: 32px; font-size: 16px; color: #fff; background: #0b5f91; }
+.form_subTitle .form_subTitle_btn { position: absolute; left: 0; top: 0; z-index: 1; width: 100%; height: 100%; text-align: center; cursor: pointer; cursor: hand; }
+.form_subTitle_btn i { margin-top: 4px; display: inline-block; width: 13px; height: 13px; background: url(../img/form_subTitle_btn_ico.png) 0 0 no-repeat; }
+.form_subTitle_btn i.checked { background: url(../img/form_subTitle_btn_ico.png) 0 -13px no-repeat; }
+.main form table { margin-top: 3px; margin-bottom: 5px; }
+.form_th { padding-top: 7px; padding-left: 14px; font-size: 14px; color: #fff; vertical-align: top; }
+.ipt { position: relative; display: inline-block; margin: 3px; padding: 6px 0 4px 0; height: 24px; line-height: 24px; background: #fff url(../img/ipt_bg.png) 0 0 repeat-x; }
+.ipt input { margin: 0; padding: 0 4px; width: 160px; height: 14px; line-height: normal; font-size: 14px; border: 0 none; outline: 0; background-color: transparent; color: #777; vertical-align: top; }
+.buff_ico_s { margin-top: 8px; display: inline-block; width: 17px; height: 17px; vertical-align: top; background: url(../img/form_buffIco.png) 0 0 no-repeat; }
+.buff_ico_e { margin-top: 8px; display: inline-block; width: 17px; height: 17px; vertical-align: top; background: url(../img/form_buffIco.png) 0 -17px no-repeat; }
+.txt { position: relative; display: inline-block; margin: 3px; padding: 6px 0 4px 0; background: #fff url(../img/ipt_bg.png) 0 0 repeat-x; }
+.txt textarea { padding: 0 4px; width: 272px; height: 72px; line-height: 22px;font-size: 14px; resize: none; border: 0 none; outline: 0; background-color: transparent; color: #777; vertical-align: top; }
+@media screen and (max-width: 760px){
+	.txt textarea{
+		width:130px;
+	}
+}
+
+.form_errMsg {  display: block; margin: 0; padding: 0; color: #fff; }
+.product_info { float: right; margin: 10px 0; margin-right: 150px; /* padding-left: 70%;  */
+color: #fff; font-size: 20px; }
+.product_infoTxt span { color: #f7c02b; }
+.form_border { height: 5px; background: url(../img/border2.png) 0 center repeat-x; }
+.pay { float: right; margin-right: 5px; padding-top: 15px; padding-bottom: 15px; }
+.pay span, .pay a { display: inline-block; color: #fff; font-size: 20px; height: 32px; line-height: 32px; }
+.pay .delBtn, .pay .addBtn { width: 26px; height: 26px; text-align: center; line-height: 28px; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; cursor: hand; background-color: #0b5f91; border-radius: 10px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; -o-user-select: none; -user-select: none; }
+.pay .payCount { font-size: 22px; }
+.pay .price { color: #f7c02b; }
+.pay .payBtn { position: relative; width: 125px; height: 32px; line-height: 32px; background: #f7c02b; border-radius: 16px; box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5); }
+.pay .payBtn i { display: inline-block; margin-top: 3px; margin-left: 4px; width: 28px; height: 26px; background: url(../img/paybtn_ico.png) 0 0 no-repeat; vertical-align: top; }
+.pay .payBtn span { margin-left: 3px; font-size: 18px; }
+.pay .payBtn input { position: absolute; left: 0; top: 0; z-index: 1; width: 100%; height: 100%; cursor: pointer; cursor: hand; opacity: 0; }
+/* 清浮动 */
+.cf:before, .cf:after { display: table; content: ''; }
+.cf:after { clear: both; }
+
+
+@media screen and (max-width: 760px){
+	
+} 

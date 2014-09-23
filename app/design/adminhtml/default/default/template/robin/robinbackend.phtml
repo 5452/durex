@@ -1,0 +1,168 @@
+
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody><tr>
+            <td>
+                <a href="http://www.robinhq.com" target="_blank" ><h3 class="robin-header">ROBIN</h3></a>
+            </td>
+            <td class="form-buttons"></td>
+         </tr>
+    </tbody></table>
+</div>
+
+<h4 class="head-promo-catalog">ROBIN - The intelligent customer service assistant for your Magento web store</h4>
+
+<div class="entry-edit">
+	<div class="entry-edit-head"><h4>Integrate your sales orders</h4></div>
+
+	<fieldset>
+
+    	<table cellspacing="0" class="form-list" width="100%">
+    		<colgroup class="label"></colgroup>
+    		<colgroup class="value"></colgroup>
+    		<tbody>
+				<tr>
+					<td >
+						To seamless integrate your sales orders with your ROBIN, simply click on the button below. 
+					</td>
+				</tr>
+                <tr>   
+                    <td >
+                        &nbsp;
+                    </td>
+                </tr>
+    			<tr>  
+    				<td>
+                        <button onclick="connectToRobin()" type="button" class="scalable" id="robin_connect">
+                            <span>INTEGRATE ORDERS</span>
+                        </button>
+                    </td>
+    			</tr>
+    		</tbody>
+    	</table>
+    </fieldset>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head"><h4>Add the Contact tab to your web store</h4></div>
+
+    <fieldset>
+
+        <table cellspacing="0" class="form-list" width="100%">
+            <colgroup class="label"></colgroup>
+            <colgroup class="value"></colgroup>
+            <tbody>
+                <tr>
+                    <td >
+                        It's easy to add the Contact tab to your web store. Simply log on to ROBIN and start the Setup Wizard, and copy and paste the javascript to your web store. <br />
+                        For a detailed tutorial click on the button below.
+                    </td>
+                </tr>
+                <tr>   
+                    <td >
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>  
+                    <td>
+                        <button onclick="showContactTabSetup()" type="button" class="scalable" id="robin_tab">
+                            <span>ADD CONTACT TAB</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+
+
+<div class="entry-edit">
+    <div class="entry-edit-head"><h4>Knowledge base</h4></div>
+
+    <fieldset>
+
+        <table cellspacing="0" class="form-list" width="100%">
+            <colgroup class="label"></colgroup>
+            <colgroup class="value"></colgroup>
+            <tbody>
+                <tr>
+                    <td >
+                       Do you want to know more about this extension, or have some problems with installing the integration? Take a look at our docs page or contact us.
+                    </td>
+                </tr>
+                <tr>   
+                    <td >
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>  
+                    <td>
+                        <button onclick="showRobinDocs()" type="button" class="scalable" id="robin_docs">
+                            <span>GO TO ROBIN DOCS</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+
+<script type="text/javascript">
+
+    function connectToRobin() { 
+        configureApiAccess();
+    }
+
+    
+    function configureApiAccess() { 
+        var url = '<?php echo $this->getUrl('robin/Adminhtml_Robinbackend/config') ?>';
+
+        new Ajax.Request(url, {
+                        method:"get", 
+                        onSuccess: function(transport, json){ 
+                            if (transport.status == 200){
+                                var json = transport.responseText.evalJSON();
+                                postToRobin(json.apiKey, json.apiConsumer);
+                            }
+                            else{
+                                alert('Adding roles and users failed');
+                            }
+                        }, 
+                        onException: function(transport) {
+                          alert('Something went wrong, try to connect again.');
+                        },
+                        onFailure: function(transport) {
+                          alert('Something went wrong, try to connect again.');
+                        }
+        })
+    }
+
+    function postToRobin(apikey, apiConsumer) {
+      var robinUrl = 'https://app.robinhq.com/signup/magento/';
+
+
+        var form = new Element('form', {method: 'post', action: robinUrl});
+                    form.insert(new Element('input', {type: 'hidden', name: 'baseUrl', value: '<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>'}));
+                    form.insert(new Element('input', {type: 'hidden', name: 'secureBaseUrl', value: '<?php echo Mage::getStoreConfig("web/secure/base_url"); ?>'}));
+                    form.insert(new Element('input', {type: 'hidden', name: 'apikey', value: apikey}));
+                    form.insert(new Element('input', {type: 'hidden', name: 'apiConsumer', value: apiConsumer}));
+                    form.insert(new Element('input', {type: 'hidden', name: 'email', value: '<?php echo Mage::getSingleton("admin/session")->getUser()->getEmail(); ?>'}));
+                    form.insert(new Element('input', {type: 'hidden', name: 'name', value: '<?php echo Mage::getSingleton("admin/session")->getUser()->getName(); ?>'}));
+                $(document.body).insert(form);
+        form.submit();
+    }
+
+    function showContactTabSetup(){
+        var robinContactTabUrl = 'http://docs.robinhq.com/add-contact-tab-to-community/';
+
+        window.open(robinContactTabUrl, 'robinTab');
+        return false;
+    }
+
+    function showRobinDocs(){
+        var robinDocsUrl = 'http://docs.robinhq.com/install-magento-extension/';
+
+        window.open(robinDocsUrl, 'robinDocs');
+        return false;
+    }
+</script>

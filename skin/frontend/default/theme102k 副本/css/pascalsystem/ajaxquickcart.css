@@ -1,0 +1,32 @@
+.pascalsystem-content .ajaxemptycart, .pascalsystem-content .cart {
+	width:161px;
+	color:#fff;
+	background:#333;
+	margin-left:101px;
+	padding: 5px;
+	padding-top: 15px;
+	/**/
+}
+.ps-content div.ajaxemptycart{
+	margin-left: 72px;
+}
+.ps-content div.ajaxemptycart h1{
+	font-size: 12px;
+}
+
+.cart-empty{display: none;}
+.pascalsystem-content .cart .btn-continue {
+	margin-right:5px;
+}
+.pascalsystem-content .cart .btn-viewcart {
+	float:left;
+}
+.pascalsystem-content .product-view-layer {
+	width:380px;
+}
+@media screen and (max-width: 720px){
+	.pascalsystem-content .ajaxemptycart, .pascalsystem-content .cart {
+		margin-top: 62px;
+		float:right;
+	}
+}

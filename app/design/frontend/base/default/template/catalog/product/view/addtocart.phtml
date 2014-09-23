@@ -1,0 +1,153 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<script>
+jQuery(function  () {
+	jQuery('.only_num').css({
+		"display":"none"
+	});
+})
+
+
+var IsNum=true;
+//检测是否是数字.
+function CheckIsNum()
+{
+     var eventObj = jQuery.event;
+	 var keyCode = eventObj.keyCode || eventObj.which;	 
+	 if (keyCode >= 48 && keyCode <= 57)
+	 {	 
+	 	 jQuery('.only_num').css({
+		 	"display":"none"
+		 });
+		 IsNum=true;
+	 	 return true;
+	 }
+	 else
+	 {		 
+		 jQuery('.only_num').css({
+		 	"display":"block","margin-top":"10px","color":"red"
+		 });
+		 IsNum = false;
+		 return false;
+		 //document.getElementById("qty").value=1;
+		 //jQuery('#qty').val('1');	 
+	 }	
+}
+
+function checkN(val)
+	{
+           var s =/^[0-9]*$/;
+	   IsNum = s.test(val);
+           return IsNum;
+   
+	}
+
+function UpQty()
+{
+        var qtyCount = document.getElementById("qty").value;
+        IsNum  = checkN(qtyCount);
+        if (IsNum)
+        {
+           jQuery('.only_num').css({ "display":"none"  });
+           qtyCount++;
+           document.getElementById("qty").value = qtyCount;
+       }
+    
+}
+
+function DownQty()
+{
+	var qtyCount = document.getElementById("qty").value;
+        IsNum  = checkN(qtyCount);
+        if (IsNum)
+        {   jQuery('.only_num').css({ "display":"none"  });
+	    qtyCount--;
+	    if(qtyCount > 0)
+	    {
+	      document.getElementById("qty").value = qtyCount;
+	    }	
+        }
+}
+
+function changeIsNum()
+{
+	var qtyCount = document.getElementById("qty").value;
+        IsNum  = checkN(qtyCount);
+	if(IsNum)
+	{
+		//jQuery('.only_num').css({ "display":"none"  });
+	}
+	else
+	{       alert('Please input Num!');
+                document.getElementById("qty").value='1';
+ 		//jQuery('.only_num').css({ "display":"block","margin-top":"10px","color":"red"  });
+	}
+}
+
+function submits()
+{    var qtyCount = document.getElementById("qty").value;
+        IsNum  = checkN(qtyCount);
+     if(IsNum)
+     {
+	     e = jQuery.event;  
+	    if(e.stopPropagation) { //W3C阻止冒泡方法  
+	        e.stopPropagation();  
+	    } else {  
+	        e.cancelBubble = true; //IE阻止冒泡方法  
+	    }  
+	   
+     }
+}
+
+</script>
+<style type="text/css">
+	.only_num{
+		display: none;
+	}
+</style>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Bag'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+                   <div class="grayBox p1 shadow  hidden-xs visible-sm visible-md visible-lg">
+                    Free shipping on all orders.<br />
+                    Discreet delivery guaranteed.
+                    </div>
+         
+        <?php if(!$_product->isGrouped()): ?>
+        <label for="qty"><?php echo $this->__('Qty:') ?></label>
+        <span class="minus" onclick="DownQty()">-</span>
+        <input type="text" onchange="changeIsNum()" name="qty" id="qty" maxlength="12" value="1" title="<?php echo $this->__('Qty') ?>" class="input-text qty" /><span class="plus" onclick="UpQty()">+</span>
+        <?php endif; ?>
+        <p class="only_num">You can only type in numbers</p>
+        <div class="freeShopping  visible-xs hidden-sm hidden-md hidden-lg">Free shipping on all orders.
+Discreet delivery guaranteed.</div>
+        <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart"  ><span onclick="submits()" class="addBtn"><span class="carBg"   onclick="submits()" ><?php echo $buttonTitle ?></span></span></button>
+        <?php echo $this->getChildHtml('', true, true) ?>
+        
+    </div>
+<?php endif; ?>

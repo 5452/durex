@@ -1,0 +1,448 @@
+/* Space out content a bit */
+body {
+/*  padding-top: 20px;*/
+  /*放射型渐变*/
+  background:#0370b7;
+  background:radial-gradient(#3bc1e9,#0370b7) 100%;
+  /*min-height: 1000px;*/
+  color:white;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+/* Custom page header */
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  padding-bottom: 19px;
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+.table>tbody>tr>td{
+  border-top: 0;
+}
+.start_com_paragraph{
+  text-align: center;
+  list-style: none;
+}
+li{
+  list-style: none;
+}
+.payorder_content{
+  width: 857px;
+  margin:0 auto;
+  margin-bottom: 100px;
+}
+/* Custom page footer */
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
+  background-color:#0b5f91;
+}
+.nav{
+  margin-top: 30px;
+}
+.nav li img{
+  margin-right:20px;
+}
+.logo{
+ margin-left: 10%;
+}
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+.nav li a span{
+  color:white;
+}
+.register span{
+  font-size: 20px;
+  color: white;
+}
+
+/* Main marketing message and sign up button */
+.container .jumbotron {
+  text-align: center;
+  background: #0b5f91;
+  border-radius:0;
+
+}
+.confirm_succ{
+    text-align: center;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+/* Supporting marketing content */
+.marketing {
+  margin: 40px 0;
+}
+.marketing p + h4 {
+  margin-top: 28px;
+}
+
+
+.order_daitail{
+  overflow: hidden;
+}
+
+/*order center*/
+.order_list{
+  background: #0b5f91;
+  display: inline-block;
+  margin-bottom: 30px;
+  width: 100%;
+  border:2px white solid;
+}
+td.order_cen_content{
+  padding-top: 28px!important;
+  width:80%;
+}
+.start_com_paragraph{
+  height:344px;
+  /*background: #33acd3;*/
+  background:-webkit-linear-gradient(top,#32b2d6,#3591c7);
+}
+
+
+.pro_info em,.pro_info i{
+  font-style: normal;
+}
+
+
+.copyright p{
+  margin:0;
+}
+.copyright_img{
+  margin-right: 10px;
+  float:right;
+}
+.m_customize dt img,.n_customize dt img{
+  float: left;
+  margin-top: 3px;
+  margin-right: 13px;
+}
+.f_com{
+  font-size: 16px;
+}
+.m_customize dd,.n_customize dd{
+  font-size: 12px;
+}
+.n_customize{
+  color:#fff;
+}
+.start_com_h{
+  font-size: 16pt;
+  color: #fff;
+  text-align: center;
+}
+.start_com_con{
+  margin-top: 57px;
+  margin-left: 20%;
+}
+.SC_content{
+  float: left;
+  color:white;
+  font-size: 14px;
+}
+.SC_content dt{
+  display: inline-block;
+  margin-left:2%;
+}
+.intro{
+  width: 68%;
+  border:2px solid #0b5f91;
+  display: inline-block;
+}
+.com_con_span{
+  line-height: 41px;
+  display: block;
+  text-align: center;
+  font-size: 16px;
+}
+.com_title{
+  width: 100%;
+  height:47px;
+  background:#0b5f91;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 50px;
+  color:white;
+  text-align: center;
+}
+.secret{
+  text-align: center;
+  width: 69%;
+  margin-top:18px;
+}
+.SC_content dt img{
+  float: left;
+  margin-right: 50px;
+  width:17%;
+}
+.inputCont{
+  color:black;
+}
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+
+}
+
+
+
+
+
+/*customer css*/
+
+/*orderCenter*/
+.totalPrice{
+  font-style: normal;
+}
+.payCslice{
+  height: 5px;
+  width:97%;
+  float:left;
+  background: url(../img/parting-line.png) ;
+  margin:2px 0 16px;
+}
+
+.pro_name b{
+/*  font-size: 18px;*/
+  display: block;
+  font-weight: 400;
+  margin-top: 10px;
+}
+.pro_info{
+  color:white;
+  font-size: 24px;
+}
+p.order_state{
+  font-size: 1.2em;
+  width:70px;
+  float:right;
+  margin-top: 6px;
+  color: white;
+}
+.towardtoright{
+  float:right;
+}
+.start_com_btn {
+ width:140px;
+}
+.radius_button{
+  float:right;
+  width: 32%;
+  height: 32px;
+  border-radius: 20px;
+  background: #f7c02b;
+  display: inline-block;
+  text-align:left;
+  text-indent: 5px;
+  line-height: 27px;
+  box-shadow: 4px 4px 5px #333;
+  text-decoration: none;
+  color:white;
+  font-size: 20px;
+  font-weight: 500;
+}
+.ord_btn1{
+
+}
+.ord_btn2{
+  margin-left: 2%;
+  background: #0b458b;
+  background: -webkit-linear-gradient(left,#0164a9,#0b458b);
+  background: -o-linear-gradient(left,#0164a9,#0b458b);
+}
+.radius_button img{
+  margin-right: 14px;
+}
+.radius_button:hover{
+/*  background: #a47f1c;*/
+  text-decoration: none;
+  color:black;
+}
+.pro_action{
+  width:100%;
+  float:left;
+  margin-bottom: 10px;
+}
+.pro_action em{
+  margin-right: 47%;
+  font-size: 28px;
+  font-style: normal;
+  color:#f7c02b;
+  float: left;
+}
+.pro_name{
+    width: 73%;
+    float: left;
+}
+.order_c_h{
+  color:white;
+  margin: 20px auto;
+}
+.order_control{
+  float:right;
+  width:100%;
+  margin-right: 15px;
+}
+.copyright{
+  height:30px;
+  background:#073855;
+  color:#8b969f;
+  line-height: 32px;
+}
+.time_content::before {
+  /* this is the vertical line */
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  /*background: #d7e4ed;*/
+  border-left:4px dotted #0b5f91;
+
+}
+.print{
+  background:#0b5f91;
+  display:inline-block;
+  padding: 0 10px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-style: normal;
+}
+.time_point{
+  margin-left: -50px;
+  margin-right:25px;
+  position:relative;
+}
+.step{
+  font-size: 22px;
+  color:white;
+  line-height: 40px;
+  width:100%;
+}
+/*.step2*/
+.step3,.step4,.step5{
+  margin-top: 30px;
+  display: none;
+}
+.words{
+  color:#f7bf2c;
+}
+.view_order_pay{
+  display: inline-block;
+  width: 171px;
+  height: 36px;
+  background: #f8c02b;
+  line-height: 34px;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 18px;
+  cursor: pointer;
+  padding-left:8px; 
+}
+.view_order_pay:hover {
+  text-decoration: none;
+  color: black;
+}
+.price_d{
+  font-style:normal;
+  color:#f7c12b; 
+  margin-right: 135px;
+}
+.indicator{
+  width: 28px;
+  height: 28px;
+  border-radius:28px;
+  background: #e1b930; 
+  position:relative;
+  margin-left: -12px;
+  top:36px;
+  z-index: 3;
+}
+.goods_detail{
+  margin:30px auto; 
+}
+.term_paragraph{
+  margin-top: 30px;
+}
+.pop_up{
+  /*width: 58.5%;*/
+  height:440px;
+  background:-webkit-linear-gradient(top,#32b2d6,#377cbd);
+  /*-webkit-linear-gradient(left,#0164a9,#0b458b);*/
+
+}
+.popBtn1{
+  margin-right: 13%;
+}
+.vertical-middle{
+  margin-top: 173px;
+  display: inline-block;
+  width:100%;
+}
+.popBtn{
+  display: inline-block!important;
+  padding-left: 10px;
+  height:39px;
+  line-height:39px;
+}
+.popBtn span{
+  width:60%;
+  display: inline-block;
+  text-align: center;
+}
+
+.timelineinput{
+  width:272px;
+  margin-top: 10px!important;
+}
+@media screen and (max-width: 760px){
+  .timelineinput{
+      width:130px;
+  }
+}
+.timelinegoodsinput{
+  margin-top: 50px!important;
+}
+label{
+  font-weight: 400;
+}
+.order_list{
+  margin-left:0!important;
+}
+@media screen and (min-width: 480px){
+  body{
+    width:100%;
+    font-size: 12px;
+  }
+}
+

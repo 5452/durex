@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+    <name>Cosmo_Community_99BillPaymentGateway</name>
+    <version>1.3.2.4</version>
+    <stability>beta</stability>
+    <license uri="http://opensource.org/licenses/osl-3.0.php">Open Software License (OSL)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>&#x4E2D;&#x56FD;&#x56FD;&#x5185;&#x652F;&#x4ED8;&#x7F51;&#x5173;&#x5FEB;&#x94B1; - Chinese Payment Gateway 99Bill</summary>
+    <description>99Bill (&#x652F;&#x4ED8;&#x5B9D;) : http://www.99bill.com/
+
+
+OpenSource Support Information:
+CosmoCommerce: http://www.cosmocommerce.com 
+Email:opensource@cosmocommerce.com
+Tel: +86-021-66346672
+
+Cosmo Mao
+
+Welcome your feedback, thanks!</description>
+    <notes>initial release</notes>
+    <authors><author><name>AirForce</name><user>auto-converted</user><email>airforce.e@gmail.com</email></author><author><name>CosmoDev</name><user>auto-converted</user><email>it@cosmocommerce.com</email></author><author><name>CosmoSales</name><user>auto-converted</user><email>sales@cosmocommerce.com</email></author></authors>
+    <date>2009-10-30</date>
+    <time>19:23:22</time>
+    <contents><target name="magecommunity"><dir name="CosmoCommerce"><dir name="Cosmo99Bill"><dir name="Block"><file name="Error.php" hash="a36b0eb58195fe1ebcfae59e3708c4b0"/><file name="Form.php" hash="9d2c9ab348ae5b823b3f9106625fb921"/><file name="Redirect.php" hash="19bd01da1110be0035298e509daede14"/></dir><dir name="controllers"><file name="PaymentController.php" hash="eabeaf34537ff1b4326daf575cf3e770"/></dir><dir name="etc"><file name="config.xml" hash="7d005abe3dde82d3cf4e2faa6cf8fb3f"/><file name="system.xml" hash="06a51793f2476eef672d514d0a2cab05"/></dir><dir name="Helper"><file name="Data.php" hash="48c17acaa87ccd786a0f7b0b22cb7eaa"/></dir><dir name="Model"><dir name="Api"><file name="Debug.php" hash="3efde3a193de5db1a1b1e6474d00af3e"/></dir><dir name="Mysql4"><dir name="Api"><dir name="Debug"><file name="Collection.php" hash="4e190fd6fb9c40bdebefeccf6be98f8c"/></dir><file name="Debug.php" hash="b8c1420671c492bf9224bd98f08c6cbb"/></dir><file name="Setup.php" hash="fe9421e33aa3cd7600a6a435f6077ec4"/></dir><dir name="Source"><file name="Language.php" hash="da83764733fa1f3b0b303dce7e65eb89"/><file name="Servicetype.php" hash="9170a1ee2d206701e9dc1670b86e97ad"/><file name="Transport.php" hash="bd9c5ba98bd3d3cdd42a0d9adf30451e"/></dir><file name="Payment.php" hash="89c21208ced7afc419de03e624c152be"/></dir><dir name="sql"><dir name="cosmo99bill_setup"><file name="mysql4-install-0.1.0.php" hash="f4e20f3dbebcc6ca1d23c6b8bcc5d22f"/></dir></dir></dir></dir></target><target name="magelocale"><dir name="en_US"><file name="CosmoCommerce_Cosmo99Bill.csv" hash="688189dc99be89bba371b79f0e23715b"/></dir><dir name="zh_CN"><file name="CosmoCommerce_Cosmo99Bill.csv" hash="1fc7a8a2c3885cb002c1521cfbd960af"/></dir></target><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="images"><dir name="cosmo99bill"><file name="99bill.gif" hash="84a7fc76e6883166b5dd06548c395447"/><file name="bank_boc.gif" hash="6a75a86abe1798ad46009303c788b582"/><file name="bank_bosh.gif" hash="7f64415034dc29b1661164ba130005c5"/><file name="bank_ccb.gif" hash="4aa5881395d506eccd78f6087c7a8535"/><file name="bank_cib.gif" hash="4c63cd66121f7742f5b4f56efa4e3614"/><file name="bank_cmb.gif" hash="07e8bb614c64cce7a8e45aa68f603965"/><file name="bank_cmbc.gif" hash="4c7b55d3fa62f8ad28b6fb51a7e6a479"/><file name="bank_gdb.gif" hash="981f5bdd194917c8db423a588ccaa7e3"/><file name="bank_hxb.gif" hash="e6603cda8b71d28414134785e7e9f76e"/><file name="bank_icbc.gif" hash="d975e8e6486c8e556bb7ef39fb836724"/><file name="bank_spdb.gif" hash="6f5bdc6b60fe5fbf12cb5998a78c9077"/><file name="ljzf02.gif" hash="e1d39a975315049d0c6e53ee4bc80a9a"/><file name="logo_99bill.gif" hash="ac06412e6f0e74618161509356170a8f"/></dir></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="default"><dir name="default"><dir name="template"><dir name="cosmo99bill"><file name="error.phtml" hash="7603bc78fdca7e06b3a98c72521b6023"/><file name="form.phtml" hash="e82b4d9845abf473f81519deb082bf48"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="CosmoCommerce_Cosmo99Bill.xml" hash="0cbe5a8d2cfa47fab14c45170da73a4f"/></dir></target></contents>
+    <compatible/>
+    <dependencies/>
+</package>

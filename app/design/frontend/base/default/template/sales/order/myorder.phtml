@@ -1,0 +1,33 @@
+<?php 
+
+
+
+$order_id = $this->getRequest()->getParam('order_id');
+$_order = $this->helper('sales/Guest')->MyOrder($order_id); 
+
+
+
+//运送  //ship info 
+print $_order[0]["shipping_description"].'<br>';
+//订单状态.  //order state
+print $_order[0]["state"].'<br>';
+
+print $_order[0]["customer_email"].'<br>';
+print $_order[0]["total_item_count"].'<br>';
+
+foreach($_order[1] as $product)
+{
+ print $product["name"].'<br>';
+ print $product["price"].'<br>';
+ print $product["bg_type"].'<br>';
+ print $product["bg_option"].'<br>';
+print $product["zs"].'<br>';  
+print $product["text"].'<br>';
+print $product["qrcode"].'<br>';
+print $product["barcode"].'<br>';
+print $product["description"].'<br>';
+print $product["created_at"].'<br>';
+print $product["sku"].'<br>';
+
+}
+?>

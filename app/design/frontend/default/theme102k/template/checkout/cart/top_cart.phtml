@@ -1,0 +1,14 @@
+   
+<?php $Helper=$this->helper('checkout/cart'); ?>
+<?php $_cartQty = $Helper->getSummaryCount() ?>
+<?php $_items = $this->getRecentItems() ?>
+<?php if(count($_items)): ?>
+				<?php if ($_cartQty==1): ?>
+				                <span ><?php echo $this->__('<a id="cartNum" href="%s" class="top-link-cart"><i class="cartNumcen">1</i></a>', $this->getUrl('checkout/cart')) ?></span><b class="Shopping">Shopping</b>
+				<?php else: ?>
+				<span ><?php echo $this->__('<a id="cartNum" href="%s" class="top-link-cart"><i class="cartNumcen">%s</i></a>', $this->getUrl('checkout/cart'), $_cartQty) ?></span><b class="Shopping">Shopping</b>
+				<?php endif ?>
+<?php else: ?>
+				<span ><?php echo $this->__('<a id="cartNum" href="%s" class="top-link-cart"><i class="cartNumcen">0</i></a>', $this->getUrl('checkout/cart')) ?></span><b class="Shopping">Shopping</b>
+				
+<?php endif ?>

@@ -1,0 +1,189 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+
+
+
+
+<script charset="utf-8" type="text/javascript" language="javascript">// <![CDATA[
+jQuery(document).ready(function(){
+    jQuery("#collections").mouseover(function(){
+    jQuery("#collections>ul").show();
+    });
+    jQuery("#collections").mouseout(function(){
+    jQuery("#collections>ul").hide();
+    });
+    jQuery(".cookieclose").click(function(){
+    	jQuery("#cookies").attr("class","");
+    	jQuery("#cookies").css("display","none");
+        });
+
+    jQuery("#Viberators").click(function(){
+      jQuery("#VibMenu").slideToggle();
+    });
+
+    jQuery('#search_img').click(function () {
+
+      jQuery('nav').attr('class','');
+      // jQuery('nav').css('display','block');
+
+      jQuery('.userDiv').css('display','none');
+      jQuery('.navbar-header').css('display','none');
+      jQuery('.car').css('display','none');
+      jQuery('#Viberators').css('display','none');      
+      jQuery('.navbar-nav a').css('display','none');
+      jQuery('#navSizer').css({'width':'0','height':'0'});
+      jQuery('.navbar-nav').css({'height':'0','margin-top':'0'});
+
+      jQuery('#search').css({
+        'display':'block',
+        'left':'25px',
+        'top':'83px',
+        'width':jQuery(window).width()-40+'px',
+        'height':'35px',
+        'margin-top':'7px',
+        'z-index':'1002'
+      });
+
+      jQuery('#disapear').css({
+        'display':'block',
+        'width':'800px',
+        'height':'800px',
+        'position':'absolute',
+        'z-index':'1001',
+      });
+        
+    });
+
+    jQuery('#disapear').click(function(){
+
+          // if(jQuery(this)!=jQuery('#search_img')){
+            
+            jQuery('#search').css('display','none');
+
+            jQuery('#disapear').css({
+              'display':'none',
+              'width':'0px',
+              'height':'0px',
+              'position':'absolute',
+              'z-index':'-5'
+            });
+          // }  
+        });
+
+        jQuery('body').width(jQuery(window).width()+'px');
+
+      
+        // jQuery('.car_m').click(function(){
+          
+        //   if (jQuery(window).width()<740) {    
+            
+        //     var carlistPos = (jQuery(window).width()-240)/2;   
+            
+        //     jQuery('.carlist').css({'left':carlistPos+'px'});
+        //     alert(jQuery('.carlist').css('left'));
+        //   }
+        // });
+        
+
+        
+        
+});
+</script>
+<div id="header" class="container" style="position: static;">
+<p id="cookies" class="cookies hidden-xs visible-sm  visible-md visible-lg"><a href="#" class="cookieclose">X</a>This site uses cookies. By continuing to browse it, you consent to the use of cookies. For more information, please read our<a href="/magento/privacy-policy"><span>privacy policy.</span></a></p>
+<nav class="navbar navbar-default hidden-xs visible-sm" role="navigation">
+  <div class="userDiv">
+   <ul>
+   <?php echo $this->getChildHtml('topLinks') ?>
+   </ul>
+  </div>
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header ">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="<?php echo $this->getUrl('') ?>" ><img src="<?php echo $this->getSkinUrl('') ?>images/logo.png" width="145"></a>
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="" id="navSizer">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#"  role="button" id="Viberators">Viberators <b class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" id="VibMenu">
+          <li role="presentation"><a href="<?php echo $this->getUrl('bullet-vibrators.html') ?>">Bullet Vibrators</a></li>
+	        <li role="presentation"><a href="<?php echo $this->getUrl('classic-vibrators.html') ?>">Classic Vibrators</a></li>
+		      <li role="presentation"><a href="<?php echo $this->getUrl('massager-vibrators.html') ?>">Massager Vibrators</a></li>
+        </ul>
+      </li>
+      <li><a href="<?php echo $this->getUrl('lubes-and-gels.html') ?>">Lubes and Gels</a></li>
+      <li><a href="#">Gift</a></li>
+      <li><a href="<?php echo $this->getUrl('durexplore') ?>">Durexplore</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <?php echo $this->getChildHtml('topSearch') ?>
+      <li class="car">
+      <?php echo $this->getChildHtml('header_sidebar') ?>
+      </li>
+      <li id="disapear"></li>
+    </ul>
+  </div><!-- /.navbar-collapse -->
+</nav>
+
+<div id="navigation_m" class="visible-xs">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+       <tr>
+          <td width="17%" valign="bottom" align="center"><img src="<?php echo $this->getSkinUrl('') ?>images/icon_menu.jpg" id="menu_m_btn" class="hand"></td>
+          <td width="17%" valign="bottom" align="center"><img id="search_img" src="<?php echo $this->getSkinUrl('') ?>images/icon_search.jpg" class="hand"></td>
+          <td width="32%" valign="bottom" align="center"><a href="<?php echo $this->getUrl('') ?>" ><img src="<?php echo $this->getSkinUrl('') ?>images/logo_m.jpg" width="167" height="93" class="hand"></a></td>
+          <td width="17%" valign="bottom" align="center"><a href="<?php echo $this->getUrl('customer/account') ?>"><img src="<?php echo $this->getSkinUrl('') ?>images/icon_user.jpg" class="hand"></a></td>
+          <td width="17%" valign="bottom" align="center" class="car_m"><?php echo $this->getChildHtml('header_sidebar') ?></td>
+       </tr>
+    </table> 
+    <ul id="menu_m">
+      <li>
+        <a href="" >Viberators </a>
+        <ul>
+          <li><a href="<?php echo $this->getUrl('bullet-vibrators.html') ?>">Bullet Vibrators</a></li>
+	      <li><a href="<?php echo $this->getUrl('classic-vibrators.html') ?>">Classic Vibrators</a></li>
+		  <li><a href="<?php echo $this->getUrl('massager-vibrators.html') ?>">Massager Vibrators</a></li>
+        </ul>
+      </li>
+      <li><a href="<?php echo $this->getUrl('lubes-and-gels.html') ?>">Lubes and Gels</a></li>
+      <li><a href="">Gift</a></li>
+      <li><a href="<?php echo $this->getUrl('durexplore') ?>">Durexplore</a></li>
+    </ul>
+  </div>
+</div>
+

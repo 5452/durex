@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+/*  padding: 0;*/
+}
+/* Space out content a bit */
+body {
+  /*放射型渐变*/
+  background: #0370b7;
+  background: radial-gradient(#3bc1e9,#0370b7) 100%;
+  min-height: 768px;
+}
+.wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.header {
+  box-shadow: 3px 8px 10px rgba(0,0,0,0.1);
+}
+.navbar {
+  position: relative;
+}
+.login {
+  position: absolute;
+  right: 4px;
+  top: 50px;
+  color: #fff;
+  font-weight: bold;
+  overflow: hidden;
+}
+.login span {
+  margin-left: 4px;
+  line-height: 20px;
+}
+
+.header .navbar-header {
+
+}
+.header .affix-nav {
+  margin-left: 160px;
+  overflow: hidden;
+}
+.affix-nav li a {
+  padding: 10px 15px;
+  display: block;
+  height: 112px;
+  line-height: 102px;
+  font-size: 12px;
+  color: #fff;
+  font-weight: bold;
+}
+.affix-nav li a:hover,
+.affix-nav li.active a:hover{
+  background-color: #0b5f91;
+}
+.affix-nav li a img {
+  margin-right: 4px;
+  margin-top: 38px;
+}
+.pay-info {
+  color: #fff;
+  margin: 0 auto;
+  width: 350px;
+  text-align: center;
+  font-size: 20px;
+}
+.pay-info h4 {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+.pay-info a img {
+  float: left;
+  width: 37px;
+  height: 37px;
+  margin: 4px;
+}
+.pay-info a span {
+  float: left;
+  width: 150px;
+  text-align: center;
+}
+.view-order,
+.continue-custom {
+  margin: 20px auto;
+  display: block;
+  width: 208px;
+  height: 45px;
+  background: #f8c02b;
+  line-height: 45px;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 22px;
+  cursor: pointer;
+}
+.view-order {
+  margin-top: 60px;
+}
+.view-order:hover,
+.continue-custom:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.continue-custom {
+  background: #0c5f91;
+}
+
+.footer-wrapper {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  height: 28px;
+  background: #000;
+  opacity: 0.6;
+}
+.footer {
+  width: 1000px; 
+  margin: 0 auto;
+  overflow: hidden;;
+  height: 28px;
+  padding-top: 4px;
+}
+.footer-info {
+  color: #fff;
+}
+.footer-share a{
+  margin-left: 4px;
+}

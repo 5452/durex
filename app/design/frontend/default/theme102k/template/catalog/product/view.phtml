@@ -1,0 +1,308 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+  <div class="product-essential">
+    <form action="<?php echo $this->getSubmitUrl($_product) ?>"
+			method="post" id="product_addtocart_form"
+			<?php if($_product->getOptions()): ?> enctype="multipart/form-data"
+			<?php endif; ?>>
+      <div class="row" >
+        <div class="no-display">
+          <input type="hidden" name="product"
+						value="<?php echo $_product->getId() ?>" />
+          <input type="hidden"
+						name="related_product" id="related-products-field" value="" />
+        </div>
+        
+        <div class="col-md-6 col-sm-6 col-xs-9 col-md-offset-0 col-sm-offset-0 goodsDeImg ">
+          <div class="product-name  visible-xs hidden-sm hidden-md hidden-lg">
+            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+          </div>
+          <div class="product-img-box "> <?php echo $this->getChildHtml('media')?> </div></div>
+        <div class="product-collateral col-md-6 col-sm-6 col-xs-12 col-md-offset-0 col-sm-offset-0 col-xs-offset-1">
+          <div class="product-name  hidden-xs visible-sm visible-md visible-lg">
+            <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+          </div>
+          <div class="rev"><?php echo $this->getReviewsSummaryHtml($_product, false, true)?></div>
+          <div class="descript">
+            <?php if ($_product->getShortDescription()):?>
+            <div class="short-description">
+              <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+            </div>
+            <?php endif;?>
+            <?php if ($_product->getDescription()):?>
+            <div class="faq">
+              <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description') ?></div>
+            </div>
+            <?php endif;?>
+            <div class="terms">
+              <div class="std"> It normally takes around three (3) business days for us to
+                deliver your orders to your door. The first product ordered
+                costs £8 GBP to deliver, with each additional product adding
+                £2.5GBP to the total shipping cost.<br>
+                We provide 30 days
+                non-conditional warranty for returns and exchanges. Please
+                contact customer service via <a
+									href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. </div>
+            </div>
+          </div>
+          <div class="product-shop">
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <?php echo $this->getChildChildHtml('container1', '', true, true)?>
+            <?php endif;?>
+            <?php if ($this->canEmailToFriend()): ?>
+            <p class="email-friend"> <a
+							href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a> </p>
+            <?php endif; ?>
+            <?php echo $this->getTierPriceHtml()?> <?php echo $this->getChildHtml('product_type_data')?>
+            <div class="clear"></div>
+            <?php echo $this->getChildHtml('extrahint')?> <?php echo $this->getChildHtml('alert_urls')?>
+            <?php if (!$this->hasOptions()):?>
+            <div class="add-to-box">
+              <?php if($_product->isSaleable()): ?>
+              <?php echo $this->getChildHtml('addtocart')?>
+              <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+              <div class="clearer"></div>
+              <span class="or"><?php echo $this->__('OR') ?></span>
+              <?php endif; ?>
+              <?php endif; ?>
+              <?php echo $this->getChildHtml('addto')?> </div>
+            <?php echo $this->getChildHtml('extra_buttons')?>
+            <?php elseif (!$_product->isSaleable()): ?>
+            <div class="add-to-box"> <?php echo $this->getChildHtml('addto')?> </div>
+            <?php endif; ?>
+            <div class="video" style="display:none;"> <img src="<?php echo $this->getSkinUrl('') ?>images/video.jpg"
+							width="170" height="82" /> </div>
+          </div>
+          <?php //echo $this->getChildHtml('upsell_products') ?>
+          <?php //echo $this->getChildHtml('product_additional_data') ?>
+        </div>
+        
+        <div class="clearer"></div>
+        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+        <?php echo $this->getChildChildHtml('container2', '', true, true)?>
+        <?php endif;?>
+      </div>
+    </form>
+      <div id="info" class="row hidden-xs visible-sm  visible-md visible-lg" style="margin-top:20px;">
+        <div class="col-md-3 col-sm-3 col-xs-12 tab_btn">
+          <div class="purple-box text-center">Product Description </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 tab_btn">
+          <div class="purple-box text-center">Product Features</div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 tab_btn">
+          <div class="purple-box text-center">Delivery and Terms</div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-12 tab_btn">
+          <div class="purple-box text-center">FAQs</div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 tab_con"  style="display:block;">
+          <div class="p10">
+            <?php if ($_product->getDescription()):?>
+            <?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description') ?>
+            <?php endif;?>
+           </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 tab_con">
+          <div class="p10">
+			  <?php if ($_product->getShortDescription()):?>
+              <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+              <?php endif;?>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 tab_con">
+          <div class="p10"> It normally takes around three (3) business days for us to deliver your orders to your door. We are currently offering free shipping on all orders and thus the price you see listed next to your product is the price you will pay when ordering.<br>
+              We provide 30 days
+              non-conditional warranty for returns and exchanges. Please
+              contact customer service via <a
+								href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. </div>
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12 tab_con">
+          <div class="p10">
+			  <?php if ($_product->getDescription()):?>
+              <?php echo $_product["faq"] ?>
+              <?php endif;?>
+          </div>
+        </div>
+      </div>
+     <div id="info_m" class="row visible-xs hidden-sm hidden-md hidden-lg">
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="purple-box tab_btn">Product Description </div>
+      <div class="tab_con  p10" style="display:block;">
+            <?php if ($_product->getDescription()):?>
+            <?php echo $_helper->productAttribute($_product, nl2br($_product->getDescription()), 'description') ?>
+            <?php endif;?>
+       </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="purple-box tab_btn">Product Features</div>
+      <div class="tab_con p10"><?php if ($_product->getShortDescription()):?>
+              <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+              <?php endif;?></div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="purple-box tab_btn">Delivery and Terms</div>
+      <div class="tab_con p10">
+          It normally takes around three (3) business days for us to deliver your orders to your door. We are currently offering free shipping on all orders and thus the price you see listed next to your product is the price you will pay when ordering.<br>
+              We provide 30 days
+              non-conditional warranty for returns and exchanges. Please
+              contact customer service via <a
+								href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. 
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="purple-box tab_btn">FAQs</div>
+      <div class="tab_con p10">
+	          <?php if ($_product->getDescription()):?>
+              <?php echo $_product["faq"] ?> 
+              <?php endif;?>
+      </div>
+    </div>
+  </div> 
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+        productAddToCartForm.submitLight = function(button, url){
+            if(this.validator) {
+                var nv = Validation.methods;
+                delete Validation.methods['required-entry'];
+                delete Validation.methods['validate-one-required'];
+                delete Validation.methods['validate-one-required-by-name'];
+                if (this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+                    this.form.submit();
+                }
+                Object.extend(Validation.methods, nv);
+            }
+        }.bind(productAddToCartForm);
+
+
+        jQuery(document).ready(function(){
+            jQuery("ul .faq").click(function(){
+            jQuery(".descript2").children().hide();
+            jQuery(this).parent().parent().children().find("a").css('color','#fff');
+        	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+            jQuery(this).css('color','#FD1498');
+        	jQuery(this).parent().css('border-bottom','none');
+            jQuery(".descript2 .faq").show();
+            });
+            jQuery("ul .features").click(function(){
+            jQuery(".descript2").children().hide();
+            jQuery(this).parent().parent().children().find("a").css('color','#fff');
+        	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+            jQuery(this).css('color','#FD1498');
+        	jQuery(this).parent().css('border-bottom','none');
+            jQuery(".descript2 .short-description").show();
+            	});
+            	jQuery("ul .terms").click(function(){
+            	jQuery(".descript2").children().hide();
+            jQuery(this).parent().parent().children().find("a").css('color','#fff');
+        	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+            jQuery(this).css('color','#FD1498');
+        	jQuery(this).parent().css('border-bottom','none');
+            jQuery(".descript2 .terms").show();
+            	});
+            	jQuery("ul .reviews").click(function(){
+                	jQuery(".descript2").children().hide();
+                jQuery(this).parent().parent().children().find("a").css('color','#fff');
+            	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+                jQuery(this).css('color','#FD1498');
+            	jQuery(this).parent().css('border-bottom','none');
+                jQuery(".descript2 .reviews").show();
+                	});
+            jQuery(".features").click();
+        	jQuery(".desc").parent().css('border-bottom','none');
+            jQuery(".btnLeft").click(function(){
+            	jQuery(".more-views").scrollLeft(jQuery(".more-views").scrollLeft()-86);
+            	});
+            jQuery(".btnRight").click(function(){
+            	jQuery(".more-views").scrollLeft(jQuery(".more-views").scrollLeft()+86);
+          	});
+            });  
+    //]]>
+    </script> 
+  </div>
+</div>
+
+<script>
+ jQuery(document).ready(function() {
+     jQuery("#info .tab_btn").click(function(){
+		 var i=jQuery(this).index();
+		 jQuery(".tab_con").hide();
+		 jQuery(".tab_con").eq(i).show();
+	 })
+	 jQuery("#info_m .tab_btn").click(function(){
+		 jQuery(".tab_btn").removeClass("purple-box-pink")
+		 jQuery(".tab_con").hide();
+		 jQuery(this).addClass("purple-box-pink")
+		 jQuery(this).next(".tab_con").show();
+	 })
+	 jQuery("#info_m .tab_con img").width("100%");
+});
+</script>

@@ -1,0 +1,300 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+
+<meta name="viewport"
+
+content=" 
+height = [pixel_value | device-height] ,        
+width = [pixel_value | device-width ] ,
+          initial-scale = float_value ,
+          minimum-scale = float_value ,
+          maximum-scale = float_value ,
+          user-scalable = [yes | no] ,
+          target-densitydpi = [dpi_value | device-dpi | high-dpi | medium-dpi | low-dpi], initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<meta name="google-site-verification" content="PLLSvXWTUATyrPt8Eles84leDeCh8VF3vEdfilnujPg" />
+<meta name="google-site-verification" content="0dzcHu1yVR4oI0P5b_vReCz4OufcTWUjELFMK_sIuM4" />
+
+<?php
+$canURL = $this->helper('core/url')->getCurrentUrl();
+$canURL = substr($canURL,0,strpos($canURL,"?"));
+?>
+<link href="<?php echo $canURL; ?>" rel="canonical" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<!--[if lt IE 9]>
+<style type="text/css">
+.product-view .product-shop .add-to-cart .qty,
+.product-view .box-tags .form-add input.input-text,
+.cart .checkout-types li button span span
+{ behavior:url(<?php echo $this->getSkinUrl('') ?>js/PIE.php); position:relative; }
+</style>
+<![endif]-->
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<!--[if lt IE 7]>
+<div style=' clear: both; text-align:center; position: relative;'>
+<a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+<img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+</a>
+</div>
+<![endif]-->
+
+
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="<?php echo $this->getSkinUrl('') ?>js/html5shiv.min.js"></script>
+        <script src="<?php echo $this->getSkinUrl('') ?>js/respond.min.js"></script>
+    <![endif]-->
+
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<link href="<?php echo $this->getSkinUrl('') ?>dist/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="<?php echo $this->getSkinUrl('') ?>css2/style.css" rel="stylesheet" type="text/css">
+<link href="<?php echo $this->getSkinUrl('') ?>css2/style2.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('') ?>js/jquery-1.11.0.min.js"></script>
+
+<script type="text/javascript" src="<?php echo $this->getSkinUrl('') ?>js/loopedslider.js" charset="utf-8"></script>
+<!----><script type="text/javascript" src="<?php echo $this->getSkinUrl('') ?>js/jquery.doubletap.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+var j = jQuery.noConflict();
+</script>
+
+<script>
+jQuery(document).ready(function() {
+
+
+	jQuery(".pBox").hover(
+	  function () {
+		jQuery(this).addClass("hover");
+		var img=jQuery(this).children("a").children("img");
+		var imgName=jQuery(this).children("a").children("img").attr("name");
+		img.attr("src","<?php echo $this->getSkinUrl('') ?>images/"+imgName+"-hover.jpg");
+	  },
+	  function () {
+		jQuery(this).removeClass("hover");
+		var img=jQuery(this).children("a").children("img");
+		var imgName=jQuery(this).children("a").children("img").attr("name");
+		img.attr("src","<?php echo $this->getSkinUrl('') ?>images/"+imgName+".png");
+	  }
+	);
+	
+	
+	jQuery('.button').hover(
+		function(){
+			jQuery(".button").css('background-color','#fc006a');
+			jQuery('.button span').css('background-color','#fc006a');
+			jQuery('.button span span').css('background-color','#fc006a');
+		},
+		function(){
+			jQuery(".button").css('background-color','');
+			jQuery('.button span').css('background-color','');
+			jQuery('.button span span').css('background-color','');
+		}
+	);
+
+ 	jQuery('.button span').hover(
+ 		function(){
+			jQuery(".button").css('background-color','#fc006a');
+			jQuery('.button span').css('background-color','#fc006a');
+			jQuery('.button span span').css('background-color','#fc006a');
+		},
+		function(){
+			jQuery(".button").css('background-color','');
+			jQuery('.button span').css('background-color','');
+			jQuery('.button span span').css('background-color','');
+		}
+	);
+
+	jQuery('.button span span').hover(
+		function(){
+			jQuery(".button").css('background-color','#fc006a');
+			jQuery('.button span').css('background-color','#fc006a');
+			jQuery('.button span span').css('background-color','#fc006a');
+		},
+		function(){
+			jQuery(".button").css('background-color','');
+			jQuery('.button span').css('background-color','');
+			jQuery('.button span span').css('background-color','');
+		});
+
+	jQuery('#onepage-guest-register-button').hover(
+		function(){
+			jQuery('button[onclick="onepageLogin(this)"]').css('background-color','');
+			jQuery('button[onclick="onepageLogin(this)"] span').css('background-color','');
+			jQuery('button[onclick="onepageLogin(this)"] span span').css('background-color','');
+		}
+	);
+
+	jQuery('#onepage-guest-register-button span').hover(
+		function(){
+			jQuery('button[onclick="onepageLogin(this)"]').css('background-color','');
+			jQuery('button[onclick="onepageLogin(this)"] span').css('background-color','');
+			jQuery('button[onclick="onepageLogin(this)"] span span').css('background-color','');
+		}
+	);
+ 
+ 	jQuery('button[onclick="onepageLogin(this)"]').hover(
+		function(){
+			jQuery('#onepage-guest-register-button').css('background-color','');
+			jQuery('#onepage-guest-register-button span').css('background-color','');
+			jQuery('#onepage-guest-register-button span span').css('background-color','');
+		}
+	);
+
+ 	jQuery('button[onclick="onepageLogin(this)"] span').hover(
+		function(){
+			jQuery('#onepage-guest-register-button').css('background-color','');
+			jQuery('#onepage-guest-register-button span').css('background-color','');
+			jQuery('#onepage-guest-register-button span span').css('background-color','');
+		}
+	);
+
+	jQuery('#calculate-rates').hover(
+		function(){
+			jQuery('#shipping-method-buttons-container button').css('background-color','');
+			jQuery('#shipping-method-buttons-container span').css('background-color','');
+			jQuery('#shipping-method-buttons-container span span').css('background-color','');
+		}
+	);
+
+	jQuery('#calculate-rates span').hover(
+		function(){
+			jQuery('#shipping-method-buttons-container button').css('background-color','');
+			jQuery('#shipping-method-buttons-container span').css('background-color','');
+			jQuery('#shipping-method-buttons-container span span').css('background-color','');
+		}
+	);
+
+	jQuery('#shipping-method-buttons-container button').hover(
+		function(){
+			jQuery('#calculate-rates').css('background-color','');
+			jQuery('#calculate-rates span').css('background-color','');
+			jQuery('#calculate-rates span span').css('background-color','');
+		}
+	);
+
+	jQuery('#shipping-method-buttons-container span').hover(
+		function(){
+			jQuery('#calculate-rates').css('background-color','');
+			jQuery('#calculate-rates span').css('background-color','');
+			jQuery('#calculate-rates span span').css('background-color','');
+		}
+	);
+
+
+	jQuery("#menu_m_btn").click(function(){
+	  jQuery("#menu_m").slideToggle();
+	});  
+	document.body.onselectstart = document.body.ondrag = function(){
+		return false;
+	}
+	jQuery('input[type="text"]').focus(function(){
+		jQuery(this).css('border-color','#f82282');
+	}).blur(function () {
+		jQuery(this).css('border-color','');
+	})
+});
+
+
+</script>
+  <script>
+		 jQuery(function(){
+
+		  var len  = jQuery("#slider ul li").length;
+		  var index = 0;
+		  var adTimer;
+
+		  jQuery('#slider').hover(function(){
+	       clearInterval(adTimer);
+		   },function(){
+			adTimer = setInterval(function(){
+	          index++;
+			  if(index==len){index=0;}
+  		      showImg(index) 			
+ 			 } , 2000);
+ 		  }).trigger("mouseleave");
+		  
+		  jQuery('.leftBtn').click(function(){
+			if(index==len-1){
+			   index=-1;
+			}
+			 index++;
+			 showImg(index);
+			 
+ 		
+		})
+		jQuery('.rightBtn').click(function(){
+		   if(index==0){
+			   index=len;
+			 }
+			 index--;
+			 showImg(index);
+			 
+
+		})
+		})
+		
+		function showImg(index){
+			   var data1= "[{name:'50% off',value:'promotion information promotion information promotion information promotion information promotion information promotion information'},{name:'promotion',value:'We Inspire Great Sex | Vibrators, Massagers and More at Durexjoy.comWe Inspire Great Sex | Vibrators, Massagers and More at Durexjoy.com'},{name:'promotion prom',value:'We Inspire Great Sex | Vibrators, Massagers and More at Durexjoy.com'}]"; 
+		       var obj1=eval("("+data1+")");
+			   var adW= jQuery("#slider ul li").width();			
+		       if (index==0) {
+			   	jQuery("#slider ul").stop(true,false).animate({left: -adW*(index)},0);
+			   }else{
+			   	jQuery("#slider  ul").stop(true,false).animate({left: -adW*index},1000);
+			   }
+		       // jQuery("#slider  ul").stop(true,false).animate({left: -adW*index},1000);
+			   jQuery("#slider .info h3").text(obj1[index].name);
+               jQuery("#slider .info p").eq(0).text(obj1[index].value);
+		  
+
+		}
+		
+	</script>

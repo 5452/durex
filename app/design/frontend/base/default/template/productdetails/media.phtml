@@ -1,0 +1,159 @@
+<?php
+/**
+
+ */
+?>
+
+
+<?php
+
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+	$_productDetails = Mage::getStoreConfig('product_details/general');
+	/* Main Image Size */
+    if (strstr($_productDetails['mainImageSize'], '_')) {
+        $mainImageSize = explode('_', $_productDetails['mainImageSize'], 2);
+    } else {
+        $mainImageSize = array(400, 400);
+    }
+    /* Popup Image Size */
+    if (strstr($_productDetails['popupImageSize'], '_')) {
+        $popupImageSize = explode('_', $_productDetails['popupImageSize'], 2);
+    } else {
+        $popupImageSize = array(0, 0);
+    } 
+    /* Additional Images Size */
+    if (strstr($_productDetails['additionalImageSize'], '_')) {
+        $additionalImageSize = explode('_', $_productDetails['additionalImageSize'], 2);
+    } else {
+        $additionalImageSize = array(60, 60);
+    }
+    
+    $image = $this->helper('catalog/image')->init($_product, 'image');
+    if ($popupImageSize[0] > 0) {
+        $image = $this->helper('catalog/image')->init($_product, 'image')->resize($popupImageSize[0], $popupImageSize[1]);
+    }
+?>
+
+
+		<div class="rollover"><img src="<?php echo $this->getSkinUrl('images/zoom.png');?>"/></div>
+	    
+        <a href="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize($popupImageSize[0], $popupImageSize[1]); ?>"  class = 'cloud-zoom sliderable_a' id='zoom1'rel="adjustX: 10, adjustY:0"  >
+        <div class="slidable">
+            <img class="videoImg videoImgNone" src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize($mainImageSize[0], $mainImageSize[1]);?>"  title="<?php echo $this->htmlEscape($this->getImageLabel())?>" />
+            <img class="videoImg videoImgNone" src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize($mainImageSize[0], $mainImageSize[1]);?>"  title="<?php echo $this->htmlEscape($this->getImageLabel())?>" />
+            <img class="videoImg videoImgNone" src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize($mainImageSize[0], $mainImageSize[1]);?>"  title="<?php echo $this->htmlEscape($this->getImageLabel())?>" />
+        </div>
+            <span class="pro_video"><?php echo $_product['video'];?></span>
+        </a>
+ 
+
+ 
+<?php if (count($this->getGalleryImages()) > 0): ?>
+<a class="btnLeft hidden-xs visible-sm visible-md visible-lg"><img src="<?php echo $this->getSkinUrl('') ?>images/icon_left.png"/></a>
+<a class="btnRight hidden-xs visible-sm visible-md visible-lg"><img src="<?php echo $this->getSkinUrl('') ?>images/icon_right.png"/></a>
+<div class="more-views hidden-xs visible-sm visible-md visible-lg">
+    <!-- <ul style="width:<?php echo count($this->getGalleryImages())*86 ?>px"> -->
+    <ul>
+	<?php $i=0 ?>
+
+    <?php foreach ($this->getGalleryImages() as $_image): ?>
+        <li>
+		 <a href='<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize($popupImageSize[0], $popupImageSize[1]); ?>' class='cloud-zoom-gallery' title='<?php echo $this->htmlEscape($_image->getLabel()) ?>'
+		 rel="useZoom: 'zoom1', smallImage: '<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize($mainImageSize[0], $mainImageSize[1]); ?>' ">            
+                <img onclick="changeimg()" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize($additionalImageSize[0], $additionalImageSize[1]); ?>" alt = "<?php echo $this->htmlEscape($_image->getLabel()) ?>"/>
+        </a>
+        </li>
+    <?php endforeach; ?>
+
+       <li> 
+		 <a href='<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_product["video"])->resize($additionalImageSize[0], $additionalImageSize[1]); ?>' class='cloud-zoom-gallery'
+		 rel="useZoom: 'zoom1', smallImage: '<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_product["videoimg"])->resize($mainImageSize[0], $mainImageSize[1]); ?>' ">
+		 
+         <img onclick="changevideo()" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_product["videoimg"])->resize($additionalImageSize[0], $additionalImageSize[1]); ?>" />
+         </a>
+        </li>   
+
+    </ul>
+	
+</div>
+<?php endif; ?>
+<script>
+var videoimg='<?php echo $_product["videoimg"];?>';	
+
+init();
+function init()
+{  	
+	if(videoimg == '')
+	{
+		jQuery("#zoom1 img").show();
+	    jQuery('.videoImg').removeClass("videoImgNone");
+		jQuery("#zoom1 span").hide();
+	}	//alert(videoimg);
+}
+
+function changevideo()
+{	 	 
+	if(videoimg != '')
+	{
+		jQuery("#zoom1 img").hide();
+	    jQuery('.videoImg').addClass("videoImgNone");
+	    //    alert('a');
+		jQuery("#zoom1 span").show();
+	}
+}
+
+function changeimg()
+{
+	jQuery("#zoom1 img").show();
+    jQuery('.videoImg').removeClass("videoImgNone");
+	jQuery("#zoom1 span").hide();
+	
+}
+</script>
+
+
+<script type="text/javascript">
+jQuery(function  () {
+
+    var imgWidth = jQuery('.slidable img').width();
+    var slideableWidth = imgWidth*jQuery('.slidable img').length;
+
+    jQuery('.slidable').width(slideableWidth);
+
+    // $('.swipe').addSwipeEvents().
+    //   bind('swipe', function(evt, touch) {
+    //     // triggered for swipe events
+    //   })
+
+    jQuery('.sliderable_a').addSwipeEvents().bind('swipeleft',function(evt,touch){
+
+        var imgLeft = Math.abs(parseInt(jQuery('.slidable').css('marginLeft')));
+
+        if(imgLeft < -(imgWidth-slideableWidth)){
+
+            imgLeft+=imgWidth;
+            jQuery('.slidable').animate({'margin-left':-(imgLeft)});
+        } else if(imgLeft >= -(imgWidth-slideableWidth)){
+
+            return false;
+        }
+
+    });
+
+    jQuery('.sliderable_a').addSwipeEvents().bind('swiperight',function(evt,touch){
+
+        var imgLeft = Math.abs(parseInt(jQuery('.slidable').css('marginLeft')));
+
+        if(imgLeft !=0 ){
+            imgLeft-=imgWidth;
+            jQuery('.slidable').animate({'margin-left':-(imgLeft)});
+        } else{
+            return false;
+        }
+
+    });
+
+})
+    
+</script>

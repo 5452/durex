@@ -1,0 +1,88 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<div class="footer-container" style="display:none;">
+    <div class="footer">
+							<?php echo $this->getChildHtml('footer_block') ?>
+							<div class="footer_row">
+        <address>
+        <?php echo $this->getCopyright() ?> <?php $current_page = Mage::app()->getFrontController()->getRequest()->getRouteName(); 
+        if ($current_page == 'cms'):
+        //echo '2011-13  |   ALL RIGHTS RESERVED';
+        endif;
+        ?>
+        </address>
+       </div>
+    </div>
+</div>
+
+<div id="footer"  class="container">
+  <div class="row grayBg">
+    <div class="col-md-3 col-sm-3 col-xs-6">
+       <ul>
+          <li><a href="<?php echo $this->getUrl('about-us') ?>">About Us</a></li>
+          <li><a href="<?php echo $this->getUrl('help') ?>">Help</a></li>
+          <li><a href="<?php echo $this->getUrl('contacts') ?>">Contact</a></li>
+       </ul>
+    </div>
+    <div class="col-md-3 col-sm-3 col-xs-6">
+       <ul>
+         <li><a href="<?php echo $this->getUrl('privacy-policy') ?>">Privacy Policy</a></li>
+         <li><a href="<?php echo $this->getUrl('customer/account/login') ?>">Sign in/up</a></li>
+         <li><a href="<?php echo $this->getUrl('terms') ?>">Terms & Conditions</a></li>
+       </ul>
+    </div>
+    <div class="col-md-2 col-sm-2 col-xs-4">
+      <ul>
+        <li><a href="<?php echo $this->getUrl('customer/account') ?>">My Account</a></li>
+        <li><a href="<?php echo $this->getUrl('checkout/cart') ?>">My Bag</a></li>
+        <li><a href="<?php echo $this->getUrl('sales/order/history') ?>">Track My Order</a></li>
+      </ul>
+    </div>
+    <div class="col-md-4 col-sm-4 col-xs-8">
+      <table cellpadding="0" cellspacing="0" border="0">
+         <tr>
+            <td rowspan="2" valign="bottom"><img src="<?php echo $this->getSkinUrl('') ?>images/icon-reckitt.jpg" width="100%" ></td>
+            <td rowspan="2" valign="bottom"><img src="<?php echo $this->getSkinUrl('') ?>images/icon-paypal.jpg" width="100%"></td>
+            <td><img src="<?php echo $this->getSkinUrl('') ?>images/icon-visa.jpg" width="100%"></td>
+         </tr>
+         <tr>
+            <td><img src="<?php echo $this->getSkinUrl('') ?>images/icon-masterCard.jpg" width="100%"></td>
+         </tr>
+         <tr>
+            <td colspan="3" align="right" class="emailUs">Email Us: <span>customerservice@durexjoy.com</span></td>
+         </tr>
+      </table>
+    </div>
+  </div>
+  <p class="copyright">COPYRIGHT © 2011-2014 RECKITT BENCKISER (HONGKONG) LTD. ALL RIGHTS RESERVED</p>
+</div>
+<script src="<?php echo $this->getSkinUrl('') ?>dist/js/bootstrap.min.js"></script>
+<style>
+#habla_expanded_div div{display:none}
+#habla_expanded_div #habla_middle_div{display:block}
+#habla_expanded_div #habla_middle_div div{display:block}
+</style>

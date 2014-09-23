@@ -1,0 +1,37 @@
+<script type="text/javascript">
+jQuery(function  () {
+    
+    var imgWidth = jQuery('.slidable img').width();
+    var slideableWidth = imgWidth*jQuery('.slidable img').length;
+
+    jQuery('.slidable').width(slideableWidth);
+
+    jQuery('.sliderable_a').on("swipeleft",function(){
+        var imgLeft = Math.abs(parseInt(jQuery('.slidable').css('marginLeft')));
+
+        if(imgLeft < -(imgWidth-slideableWidth)){
+
+            imgLeft+=imgWidth;
+            jQuery('.slidable').animate({'margin-left':-(imgLeft)});
+        } else if(imgLeft >= -(imgWidth-slideableWidth)){
+            // alert('a');
+            return false;
+        }
+
+    });
+
+    jQuery('.sliderable_a').on("swiperight",function(){
+        var imgLeft = Math.abs(parseInt(jQuery('.slidable').css('marginLeft')));
+
+        if(imgLeft !=0 ){
+            imgLeft-=imgWidth;
+            jQuery('.slidable').animate({'margin-left':-(imgLeft)});
+        } else{
+            return false;
+        }
+
+    });
+
+})
+    
+</script>

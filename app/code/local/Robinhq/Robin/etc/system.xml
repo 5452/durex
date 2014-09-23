@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	  <tabs>
+		<robin translate="label" module="robin">
+            <label>Configuration</label>
+            <sort_order>0</sort_order>
+        </robin>
+	  </tabs>
+</config>

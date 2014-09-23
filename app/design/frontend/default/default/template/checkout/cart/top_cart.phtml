@@ -1,0 +1,13 @@
+<div class="top_cart">
+<?php $_cartQty = $this->getSummaryCount() ?>    
+<?php $_items = $this->getRecentItems() ?>
+<?php if(count($_items)): ?>
+				<?php if ($_cartQty==1): ?>
+								<p class="amount"><strong>Shopping Bag: </strong><?php echo $this->__('<a href="%s" class="icon_cart">1 item(s)</a>', $this->getUrl('checkout/cart')) ?></p>
+				<?php else: ?>
+								<p class="amount"><strong>Shopping Bag: </strong><?php echo $this->__('<a href="%s" class="icon_cart">%s item(s)</a>', $this->getUrl('checkout/cart'), $_cartQty) ?></p>
+				<?php endif ?>
+<?php else: ?>
+				<p class="amount"><strong>Shopping Bag: </strong><?php echo $this->__('0 item(s)') ?></p>
+<?php endif ?>
+</div>

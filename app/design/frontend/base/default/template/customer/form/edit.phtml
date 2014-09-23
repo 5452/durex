@@ -1,0 +1,179 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<div class="row" style="position:relative; margin-top:20px;">
+<ul class="accList col-lg-3 col-md-3 col-sm-3 col-xs-3 hidden-xs visible-sm  visible-md visible-lg">
+  <li class="li01 li01_o"><a href="/magento/customer/account/edit">Account Information</a></li>
+  <li class="li02"><a href="/magento/customer/account/edit/changepass/1">Change Password</a></li>
+  <li class="li03"><a href="/magento/customer/address">Manage Address</a></li>
+  <li class="li04"><a href="/magento/sales/order/history">Order History</a></li>
+</ul>
+<!-- <div class="col-xs-12 visible-xs"><span class="acc_btn">&lt;&lt;Account Information </span></div> -->
+
+<?php 
+
+    for($i = 0; $i < 4; $i++){
+        echo '<div class="col-xs-12 visible-xs myInfoMenu">';
+
+        if($i==0){
+            echo '<a href="/magento/customer/account/edit id="AI"><span class="acc_btn">Account Information';
+        }elseif($i==1){
+            echo '<a href="/magento/customer/account/edit/changepass/1 id="CP"><span class="acc_btn">Change Password';
+        }elseif($i==2){
+            echo '<a href="/magento/customer/address" id="MA"><span class="acc_btn">Manage Address' ;
+        }elseif($i==3){
+            echo '<a href="/magento/sales/order/history" id="OR"><span class="acc_btn">Order History';
+        }
+
+        echo '</span></a></div>';
+    }
+
+?>
+<div class=" col-lg-9 col-md-9 col-sm-9 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-0">
+<div class="page-title" style="display:none;">
+    <h1><?php echo $this->__('Edit Account Information') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+ 
+<form action="<?php echo $this->getUrl('customer/account/editPost') ?>" method="post" id="form-validate">
+    <div class="row"><!--fieldset-->
+        <?php echo $this->getBlockHtml('formkey')?>
+        <h2 class="legend" style="display:none;"><?php echo $this->__('Account Information') ?></h2>
+    
+    <?php echo Mage::registry('yyy'); ?>
+
+        <ul class="form-list">
+            <li class="fields" >
+                 <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getCustomer())->toHtml() ?>
+            </li>
+            <li class="col-lg-5 col-md-5 col-sm-5 col-xs-12" >
+                <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                <div class="input-box">
+                    <input type="text" name="email" id="email" value="<?php echo $this->htmlEscape($this->getCustomer()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text required-entry validate-email" />
+                     <i class="required require">* Required Fields</i>
+                </div>
+            </li>
+        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <li><?php echo $_dob->setDate($this->getCustomer()->getDob())->toHtml() ?></li>
+        <?php endif ?>
+        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <li><?php echo $_taxvat->setTaxvat($this->getCustomer()->getTaxvat())->toHtml() ?></li>
+        <?php endif ?>
+        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <li><?php echo $_gender->setGender($this->getCustomer()->getGender())->toHtml() ?></li>
+        <?php endif ?>
+            <li class="control" style="display:none;">
+                <input type="checkbox" name="change_password" id="change_password" value="1" onclick="setPasswordForm(this.checked)" title="<?php echo $this->__('Change Password') ?>"<?php if($this->getCustomer()->getChangePassword()==1): ?> checked="checked"<?php endif; ?> class="checkbox" /><label for="change_password"><?php echo $this->__('Change Password') ?></label>
+            </li>
+        </ul>
+    </div>
+    <div class="row" style="display:none;">
+        <h2 class="legend" style="display:none;"><?php echo $this->__('Change Password') ?></h2>
+        <ul class="form-list col-lg-5 col-md-5 col-sm-5 col-xs-12">
+            <li>
+                <label for="current_password" class="required"><em>*</em><?php echo $this->__('Current Password') ?></label>
+                <div class="input-box">
+                    <input type="password" title="<?php echo $this->__('Current Password') ?>" class="input-text" name="current_password" id="current_password" />
+                </div>
+            </li>
+            <li class="fields" style="width:100%;">
+                <div class="field" style="width:100%;">
+                    <label for="password" class="required"><em>*</em><?php echo $this->__('New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo $this->__('New Password') ?>" class="input-text validate-password" name="password" id="password" />
+                    </div>
+                </div>
+                <div class="field" style="width:100%;">
+                    <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm New Password') ?></label>
+                    <div class="input-box">
+                        <input type="password" title="<?php echo $this->__('Confirm New Password') ?>" class="input-text validate-cpassword" name="confirmation" id="confirmation" />
+                    </div>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="buttons-set formBtn col-lg-5 col-md-5 col-sm-5 col-xs-12" id="editButton">
+        <p class="required" style="display:none;"><?php echo $this->__('* Required Fields') ?></p>
+        <p class="back-link"  style="display:none;"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="button" title="logout" class="button" onclick="javascript:window.location.href='/magento/customer/account/logout/'" id="logoutBtn">
+            <span><span>Logout</span></a></button>
+        <button type="submit" title="<?php echo $this->__('Save') ?>" id="saveBtn" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+
+    </div>
+</form>
+</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var dataForm = new VarienForm('form-validate', true);
+    function setPasswordForm(arg){
+        if(arg){
+            $('current_password').up(3).show();
+            $('current_password').addClassName('required-entry');
+            $('password').addClassName('required-entry');
+            $('confirmation').addClassName('required-entry');
+
+        }else{
+            $('current_password').up(3).hide();
+            $('current_password').removeClassName('required-entry');
+            $('password').removeClassName('required-entry');
+            $('confirmation').removeClassName('required-entry');
+        }
+    }
+    <?php if($this->getCustomer()->getChangePassword()): ?>
+        setPasswordForm(true);
+    <?php endif; ?>
+//]]>
+ 
+    jQuery(document).ready(function(e) {
+        jQuery(".name-firstname").css("float","left");
+    	jQuery(".name-lastname").css("float","left");
+
+    	var href = location.href;
+    	var index=href.indexOf('changepass');
+    	if(index > -1)
+    	{ 
+    		jQuery('.li01').removeClass('li01_o');
+    		jQuery('.li02').addClass('li02_o');			
+    	}
+
+        jQuery("#logoutBtn").hover(function () {
+            jQuery("#saveBtn").css('background-color','#561A69');
+            jQuery("#saveBtn span").css('background-color','#561A69');
+        });
+        jQuery("#saveBtn").hover(function () {
+            jQuery("#logoutBtn").css('background-color','#561A69');
+            jQuery("#logoutBtn span").css('background-color','#561A69');
+        });
+
+    });
+
+</script>

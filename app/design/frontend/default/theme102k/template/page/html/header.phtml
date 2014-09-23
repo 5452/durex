@@ -1,0 +1,168 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+
+
+
+
+<script charset="utf-8" type="text/javascript" language="javascript">// <![CDATA[
+jQuery(document).ready(function(){
+    jQuery("#collections").mouseover(function(){
+    jQuery("#collections>ul").show();
+    });
+    jQuery("#collections").mouseout(function(){
+    jQuery("#collections>ul").hide();
+    });
+    jQuery(".cookieclose").click(function(){
+    	jQuery("#cookies").attr("class","");
+    	jQuery("#cookies").css("display","none");
+        });
+
+    jQuery("#Viberators").click(function(){
+      jQuery("#VibMenu").slideToggle();
+    });
+
+    jQuery('#search_img').click(function () {
+
+      jQuery('nav').attr('class','');
+      // jQuery('nav').css('display','block');
+
+      jQuery('.userDiv').css('display','none');
+      jQuery('.navbar-header').css('display','none');
+      jQuery('.car').css('display','none');
+      jQuery('#Viberators').css('display','none');
+      jQuery('.navbar-nav a').css('display','none');
+      jQuery('#navSizer').css({'width':'0','height':'0'});
+      jQuery('.navbar-nav').css({'height':'0','margin-top':'0'});
+
+      jQuery('#search').css({
+        'display':'block',
+        'left':'25px',
+        'top':'83px',
+        'width':jQuery(window).width()-40+'px',
+        'height':'35px',
+        'margin-top':'7px',
+        'z-index':'1002'
+      });
+
+      jQuery('#disapear').css({
+        'display':'block',
+        'width':'800px',
+        'height':'800px',
+        'position':'absolute',
+        'z-index':'1001',
+      });
+
+    });
+
+    jQuery('#disapear').click(function(){
+
+          // if(jQuery(this)!=jQuery('#search_img')){
+
+            jQuery('#search').css('display','none');
+
+            jQuery('#disapear').css({
+              'display':'none',
+              'width':'0px',
+              'height':'0px',
+              'position':'absolute',
+              'z-index':'-5'
+            });
+          // }
+        });
+
+        jQuery('body').width(jQuery(window).width()+'px');
+
+
+        // jQuery('.car_m').click(function(){
+
+        //   if (jQuery(window).width()<740) {
+
+        //     var carlistPos = (jQuery(window).width()-240)/2;
+
+        //     jQuery('.carlist').css({'left':carlistPos+'px'});
+        //     alert(jQuery('.carlist').css('left'));
+        //   }
+        // });
+
+
+
+
+});
+</script>
+<div id="header" class='header'>
+    <nav class="navbar" role="navigation">
+        <div class="hidden-xs">
+            <div class="navbar-header">
+                <a href="javascript:void(0)"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/logo.png"></a>
+            </div>
+            <div class='affix-nav hidden-xs'>
+                <ul class="nav navbar-nav">
+                    <li>
+                      <a href="<?php echo $this->getUrl('') ?>"><img class="pull-left" src="<?php echo $this->getSkinUrl('') ?>v1/images/HP_logo.png"><span class="pull-right">首页</span></a>
+                    </li>
+                    <li>
+                      <a href="<?php echo $this->getUrl('') ?>"><img class="pull-left" src="<?php echo $this->getSkinUrl('') ?>v1/images/pen_icon.png"><span class="pull-right">定制包装</span></a>
+                    </li>
+                    <li>
+                      <a href="<?php echo $this->getUrl('') ?>"><img class="pull-left" src="<?php echo $this->getSkinUrl('') ?>v1/images/Cus_logo.png"><span class="pull-right">我的定制</span></a>
+                    </li>
+                    <li>
+                      <a href="<?php echo $this->getUrl('') ?>"><img class="pull-left" src="<?php echo $this->getSkinUrl('') ?>v1/images/book_icon.png"><span class="pull-right">平台说明</span></a>
+                    </li>
+                    <li>
+                      <a href="<?php echo $this->getUrl('') ?>"><img class="pull-left" src="<?php echo $this->getSkinUrl('') ?>v1/images/preferential.png"><span class="pull-right">最新优惠</span></a>
+                    </li>
+                    <li class="active">
+                      <a href="<?php echo $this->getUrl('') ?>"><img class="pull-left" src="<?php echo $this->getSkinUrl('') ?>v1/images/material.png"><span class="pull-right">账户资料</span></a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- <a class='login' href='###'><img class='pull-left' src="<?php echo $this->getSkinUrl('') ?>v1/images/Acc_logo.png"><span class='pull-right'>登录 &gt;</span></a>  -->
+        </div>
+        <div class="visible-xs">
+            <img id="nav_icon" src="<?php echo $this->getSkinUrl('') ?>v1/images/nav1.png" class="nav-icon " />
+            <img src="<?php echo $this->getSkinUrl('') ?>v1/images/headArrow.png" class="nav-Arrow  " />
+            支付成功
+            <img src="<?php echo $this->getSkinUrl('') ?>v1/images/logo.png" class="logo1 ">
+        </div>
+    </nav>
+</div>
+<ul class="nav nav1">
+    <li><img id="nav_back" src="<?php echo $this->getSkinUrl('') ?>v1/images/nav1.png" /></li>
+    <li><img src="<?php echo $this->getSkinUrl('') ?>v1/images/HP_logo.png" />首页</li>
+    <li><img src="<?php echo $this->getSkinUrl('') ?>v1/images/pen_icon.png" />定制包装</li>
+    <li><img src="<?php echo $this->getSkinUrl('') ?>v1/images/Cus_logo.png" />我的定制</li>
+    <li><img src="<?php echo $this->getSkinUrl('') ?>v1/images/book_icon.png" />平台说明</li>
+    <li><img src="<?php echo $this->getSkinUrl('') ?>v1/images/preferential.png" />最新优惠</li>
+    <li><img src="<?php echo $this->getSkinUrl('') ?>v1/images/Acc_logo.png">登录</li>
+    <li><img src="<?php echo $this->getSkinUrl('') ?>v1/images/material.png">账户资料</li>
+</ul>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>Robinhq_Robin</name>
+    <version>1.0.0</version>
+    <stability>stable</stability>
+    <license uri="http://robinhq.com/eula/">Robin End-User Licence Agreement</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Robin the intelligent customer service assistant</summary>
+    <description>Robin the intelligent customer service assistant extension for Magento</description>
+    <notes>ROBIN Magento integration extension</notes>
+    <authors><author><name>Robin Development team</name><user>HenDaMan</user><email>henry@robinhq.com</email></author></authors>
+    <date>2013-05-22</date>
+    <time>11:18:48</time>
+    <contents><target name="magelocal"><dir name="Robinhq"><dir name="Robin"><dir name="Block"><dir name="Adminhtml"><file name="Robinbackend.php" hash="f0c2dcb9812db71be5de98fd0c66ab43"/><file name="form.php" hash="7cf2c5c8a6de7e8cdf219ccca05d5644"/></dir></dir><dir name="Helper"><file name="Data.php" hash="2c3e07a368704c36ef1e9c186a1da79c"/></dir><dir name="controllers"><dir name="Adminhtml"><file name="RobinbackendController.php" hash="7bd4415d0cece98efeb7c6bb9b46e5bb"/></dir></dir><dir name="etc"><file name="config.xml" hash="80d59ed5bcc30530f99cbf96a4021411"/><file name="system.xml" hash="28024c9e5d617cf73c71101b255c684f"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="robin.xml" hash="c882e12c1fc359061b03882943eb8325"/></dir><dir name="template"><dir name="robin"><file name="robinbackend.phtml" hash="7dc061141178634bf1a2bf3008bc5ba3"/></dir></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="Robinhq_Robin.xml" hash="c93d6b162ebd023786aae0d7df4bfcd4"/></dir></target><target name="mageskin"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="robin"><file name="robin.css" hash="e33882122fdaf18ee8b1b4030389a114"/></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

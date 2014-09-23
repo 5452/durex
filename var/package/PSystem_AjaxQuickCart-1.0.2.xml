@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>PSystem_AjaxQuickCart</name>
+    <version>1.0.2</version>
+    <stability>stable</stability>
+    <license>OSL v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Floating shopping cart, and quick add products to the basket, use layer and AJAX technology</summary>
+    <description>This module allow to add products in a quick way to the basket. After customer click button &amp;quot;add to cart&amp;quot;, product move to the basket, and client see your shopping bag on layer. The module also works with configurable products and the grouped. After try add configurable or grouped product, client see layer with additional options and customer can choose options and add this product. You can set in Admin Panel configuration for your specif css and selector for javascript. Additional you can also modify layout xml file if you want see on layer another blocks.</description>
+    <notes>This module was tested in Magento Commerce version 1.4.0.1, 1.5.0.1 and 1.6.2.0, and work in this version smoothly. Also test in Firefox 3.6, Chrome, Opera and IE 7,8,9.</notes>
+    <authors><author><name>Pascal System</name><user>auto-converted</user><email>info@pascalsystem.pl</email></author></authors>
+    <date>2012-02-13</date>
+    <time>19:51:05</time>
+    <contents><target name="mageskin"><dir name="frontend"><dir name="default"><dir name="default"><dir name="css"><dir name="pascalsystem"><file name="ajaxquickcart.css" hash="ec1549d4513f819481f8b1a4310751e2"/></dir></dir></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="ps_ajaxquickcart.xml" hash="108f47c93fe7d73fdd198514c7958e71"/></dir><dir name="template"><dir name="ajaxquickcart"><dir name="quickcart"><file name="product.phtml" hash="c1986c175398c711a432d35693bb8a13"/></dir><dir name="viewcart"><dir name="item"><file name="default.phtml" hash="c7d13770a3f472bda1f1c19e673c208b"/></dir><file name="cart.phtml" hash="536d4245495fabc144a511c7f64ac442"/><file name="noItems.phtml" hash="bf5dc5b5d637fb7dee838e9f4d0e47aa"/></dir></dir></dir></dir></dir></dir></target><target name="mage"><dir name="js"><dir name="pascalsystem"><file name="ajaxquickcart.js" hash="549942bb46755eea4bde8f4370fd5324"/></dir></dir></target><target name="mageetc"><dir name="modules"><file name="PSystem_AjaxQuickCart.xml" hash="0711f2c5ce493d98a8e60b6df004e607"/></dir></target><target name="magecommunity"><dir name="PSystem"><dir name="AjaxQuickCart"><dir name="Block"><dir name="Item"><dir name="Renderer"><file name="Configurable.php" hash="89e1eaead843bfc0c4802cd79c1b3ceb"/><file name="Grouped.php" hash="4fd53f77ff57d9dcfe1ae3429826844b"/></dir><file name="Renderer.php" hash="18c32cfe061be5990005e7230ab44463"/></dir><dir name="Refresh"><file name="Response.php" hash="8af25ca4e61fc47ad60de9566807f5d4"/></dir><file name="Headerjs.php" hash="07014fc0f407421d386dea8a2c6b5b0f"/><file name="Layerjs.php" hash="4f0ad1cf0fbae15a2951ce3f9226ea98"/><file name="Refresh.php" hash="e75deb5b4409a583449493348eda3474"/></dir><dir name="controllers"><file name="ViewcartController.php" hash="86c82cf552108a8416fb30bc8c92a801"/></dir><dir name="etc"><file name="adminhtml.xml" hash="515e74cca8d03682ff77702f88fba6c1"/><file name="config.xml" hash="606914278fc0d9c475127e00d258b0aa"/><file name="system.xml" hash="4fb37721ae3a0b5cea7152dd864713f6"/></dir><dir name="Model"><file name="Observer.php" hash="41082880cfe576f10605b3ca20828b65"/></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><package><name>PSystem_Base</name><channel>community</channel><min>1.1.1</min><max></max></package></required></dependencies>
+</package>
