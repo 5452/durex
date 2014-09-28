@@ -169,4 +169,55 @@ class Mage_Sales_Helper_Data extends Mage_Core_Helper_Data
         }
         return (array) $node;
     }
+
+    public function getItemName($itemId)
+    {
+         $quote = Mage::getModel('sales/bv');
+        //$item = Mage::getModel("category/product")->load($itemId);
+        return $quote;
+    }
+
+    public function getItemImgPath()
+    {
+        return "v1/images/OC_goods.png";
+    }
+
+    public function getItem($orderId)
+    {
+    	$productList = array();
+    	$PM = new OrderProductMode();
+    	
+    	$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+    	$select = $connection->select()
+    	->from('sales_flat_order_item', array('product_id'))->where('order_id=?',$orderId);
+
+    	$rowsArray = $connection->fetchAll($select);
+    	
+    	$select1 = $connection->select()
+    	->from('sales_flat_quote', array('items_qty'))->where('entity_id=?',$orderId);
+    	$rowsArray1 = $connection->fetchAll($select);
+    	
+    	foreach($rowsArray as $p)
+    	{
+    		$PM = new OrderProductMode();
+    		$product = Mage::getModel('catalog/product')->load($p['product_id']);
+    		Mage::getModel('catalog/product')->load($p['product_id']);
+    		$PM->name=(string) $product['name'];
+    		
+    		$PM->product_id=(string) $product['$product_id'];
+    		$PM->img=(string) $product['image'];
+    		$PM->sku = (string) $product['sku'];
+    		$PM->Qty = (string) $rowsArray1['items_qty'];
+    		array_push($productList,$PM);
+    	}
+        return $productList;
+    }
+
+}
+
+class OrderProductMode
+{
+	function __construct(){ }
+	public $name,$img,$order_id,$product_id,$sku,$Qty;
+	
 }

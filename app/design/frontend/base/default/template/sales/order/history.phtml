@@ -1,4 +1,7 @@
-<?php $_orders = $this->getOrders(); ?>
+<?php
+    $_orders = $this->getOrders();
+    $_helper = Mage::helper('sales');
+?>
 <div class="main">
     <h3><p class="text-center order_c_h">订单中心</p></h3>
     <?php if($_orders->getSize()): ?>
@@ -8,14 +11,14 @@
         <?php foreach ($_orders as $_order): ?>
         <tr class="order_list">
             <td class="col-md-1 hidden-xs"></td>
-            <td class="col-md-2 hidden-xs"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/OC_goods.png"></td>
-            <td class="col-md-2 visible-xs"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/OC_goods1.png"></td>
+            <td class=" col-md-2 hidden-xs"><img class="mobilegoodsimg" src="<?php echo 'http://124.205.25.148/m/media/catalog/product/'.$_helper->getItem($_order->getId())[0]->img ?>"></td>
+            <td class="col-md-2 visible-xs"><img src="<?php echo 'http://124.205.25.148/m/media/catalog/product/'.$_helper->getItem($_order->getId())[0]->img ?>"></td>
             <td class="col-md-1 hidden-xs"></td>
             <td class="order_cen_content">
                 <div class="pro_info">
                     <p class="pro_name">
-                        <span>双子座&amp; 狮子座星爱盒</span>
-                        <b>数量1,<em>&nbsp;&nbsp;<?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></em> 定制</b>
+                        <span><?php echo $_helper->getItem($_order->getId())[0]->name ?></span>
+                        <b>数量<?php echo intval($_helper->getItem($_order->getId())[0]->Qty) ?>,<em>&nbsp;&nbsp;<?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></em> 定制</b>
                     </p>
                     <span class="payCslice"></span>
                 </div>
@@ -26,10 +29,13 @@
                     <p class="order_state"><?php echo $_order->getStatusLabel() ?></em></p>
                 </div>
                 <div class="order_control">
+                    <a class="radius_button ord_btn2" id="cancel" href="ord_btn1"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/bluearrow.png"><span>取消订单</span></a>
 
-                    <a class="radius_button ord_btn2" id="paynow" href="ord_btn2"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/bluearrow.png"><span>立即支付</span></a>
+                    <a class="radius_button ord_btn1" id="paynow" href="<?php echo $this->getUrl('') ?>sales/order/view/order_id/<?php echo $_order->getId() ?>"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/arrow.png"><span>订单详情</span></a>
 
-                    <a class="radius_button ord_btn1" id="cancel" href="ord_btn1"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/arrow.png"><span>取消订单</span></a>
+                    <a class="radius_button ord_btn1" id="paynow" href="<?php echo $this->getUrl('') ?>checkout/cart"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/arrow.png"><span>立即支付</span></a>
+
+
                 </div>
             </td>
         </tr>

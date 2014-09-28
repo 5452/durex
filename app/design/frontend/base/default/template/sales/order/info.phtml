@@ -1,111 +1,77 @@
-<?php
-/**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License (AFL 3.0)
- * that is bundled with this package in the file LICENSE_AFL.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/afl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
- *
- * @category    design
- * @package     base_default
- * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
- * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- */
-?>
+<div class="main">
+    <div class="payorder_content row">
 
+        <h3 class="page_titile">未达成态</h3>
+        <div class="order_detail col-md-7 col-md-offset-3">
+            <div class="time_content">
+                <div class="indicator"></div>
+                <ul class="step step1">
+                    <li>定制包装</li>
+                    <li class="goods_detail"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/detail_goods.png"><b class="words">Just For U</b></li>
+                    <li class="print">马上付款将于2014-9-28前印刷包</li>
+                </ul>
 
-<?php  $_order = $this->getOrder() ?>
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-<div class="page-title title-buttons col-lg-12 col-md-12 col-sm-12 col-xs-12 hidden-xs visible-sm  visible-md visible-lg">
-    <h1><?php echo $this->__('Order #%s - %s', $_order->getRealOrderId(), $_order->getStatusLabel()) ?></h1>
-    <span style="display:none"><?php echo $this->getChildHtml('buttons') ?></span>
-</div>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 visible-xs hidden-sm  hidden-md hidden-lg "><div class="order_btn"><?php echo $this->__('Order #%s - %s', $_order->getRealOrderId(), $_order->getStatusLabel()) ?><span></span></div></div>
-<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-<?php echo $this->getStatusHistoryRssUrl($_order) ?>
-<dl class="order-info" style="display:none;">
-    <dt><?php echo $this->__('About This Order:') ?></dt>
-    <dd>
-        <?php $_links = $this->getLinks(); ?>
-        <ul id="order-info-tabs">
-        <?php foreach ($_links as $_link): ?>
-            <?php if($_link->getUrl()): ?>
-                <li><a href="<?php echo $_link->getUrl() ?>"><?php echo $_link->getLabel() ?></a></li>
-            <?php else: ?>
-                <li class="current"><?php echo $_link->getLabel() ?></li>
-            <?php endif; ?>
-        <?php endforeach; ?>
-        </ul>
-        <script type="text/javascript">decorateGeneric($('order-info-tabs').select('LI'),['first','last']);</script>
-    </dd>
-</dl>
-<p class="order-date" style="display:none;"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
-<?php if (!$_order->getIsVirtual()): ?>
-<div class="col2-set order-info-box row" style="border-bottom:1px solid #561a69;">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="box">
-            <div class="box-title">
-                <h2 style="color:#fc006a;"><?php echo $this->__('Shipping Address') ?></h2>
-            </div>
-            <div class="box-content">
-                <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="box">
-            <div class="box-title">
-                <h2 style="color:#fc006a;"><?php echo $this->__('Shipping Method') ?><?php /* | <a href="#"><?php echo $this->__('Track Order') ?></a>*/ ?></h2>
-            </div>
-            <div class="box-content">
-                <?php if ($_order->getShippingDescription()): ?>
-                    <?php echo $_order->getShippingDescription() ?>
-                <?php else: ?>
-                    <p><?php echo $this->helper('sales')->__('No shipping information available'); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
-<div class="col2-set order-info-box row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="box">
-            <div class="box-title">
-                <h2 style="color:#fc006a;"><?php echo $this->__('Billing Address') ?></h2>
-            </div>
-            <div class="box-content">
-                <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+                <ul class="step step2">
+                    <li class="waitting_pay"><img class="time_point" src="<?php echo $this->getSkinUrl('') ?>v1/images/time_point.png">未支付，请尽快支付</li>
+                    <li><i class="price_d">$199</i><a id="paynow" class="view_order_pay" href="/m/checkout/onepage"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/arrow.png"><span>立即支付</span></a></li>
+                </ul>
+
+                <ul class="step step3">
+                    <li><img class="time_point" src="<?php echo $this->getSkinUrl('') ?>v1/images/time_point.png">定制包装印刷</li>
+                    <li></li>
+                    <li class="goods_detail">
+                        <img src="<?php echo $this->getSkinUrl('') ?>v1/images/detail_goods.png">
+                        <div class="ipt pull-right timelineinput timelinegoodsinput">
+                            <input type="text">
+                        </div>
+                        <a class="view_order_pay pull-right"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/arrow.png"><span>更新文字</span></a>
+                    </li>
+                    <li style="padding-top:10px"><img class="time_point" src="<?php echo $this->getSkinUrl('') ?>v1/images/time_point.png">顺丰速递派送</li>
+                    <li><label>收件人姓名</label><div id="name0">
+                            <div class="ipt pull-right timelineinput">
+                                <input type="text">
+                            </div>
+                            <i></i>
+                            <p class="form_errMsg"></p>
+                        </div></li>
+                    <li><label>手机号码</label>
+                        <div class="ipt  pull-right timelineinput">
+                            <input type="text">
+                        </div>
+                        <i></i>
+                        <p class="form_errMsg"></p>
+                    </li>
+                    <li><label>邮寄地址</label>
+                        <div class="txt  pull-right">
+                            <textarea class="timelineinput"></textarea>
+                        </div>
+                        <i></i>
+                        <p class="form_errMsg"></p>
+                    </li>
+                    <li><a id="update_add" class="view_order_pay pull-right"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/arrow.png"><span>更新地址</span></a></li>
+                    <li><img class="time_point" src="<?php echo $this->getSkinUrl('') ?>v1/images/time_point.png">签收完成</li>
+                </ul>
+
+                <ul class="step step4">
+                    <li><img class="time_point" src="<?php echo $this->getSkinUrl('') ?>v1/images/time_point.png">成功支付:   2014-9-15 , 13:20</li>
+                    <li>定制包装印刷</li>
+                    <li class="goods_detail"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/detail_goods.png"><b class="words">Just For U</b></li>
+                    <li class="print">将于 2014-9-15前包装完毕</li>
+                    <li>顺丰速递派送</li>
+                    <li><label>收件人姓名：</label>xxxx</li>
+                    <li><label>手机号码：</label>xxxx</li>
+                    <li><label>邮寄地址：</label>xxxx</li>
+                    <li class="print">将于 2014-9-15北京朝阳区转出</li>
+                    <li class="print">将于 2014-9-15北京朝阳区转出</li>
+                </ul>
+
+                <ul class="step step5">
+                    <li><img class="time_point" src="<?php echo $this->getSkinUrl('') ?>v1/images/time_point.png">签收完成</li>
+                    <li class="print">将于 2014-9-15签收人是：dd</li>
+                </ul>
+
             </div>
         </div>
     </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="box box-payment">
-            <div class="box-title">
-                <h2 style="color:#fc006a;"><?php echo $this->__('Payment Method') ?></h2>
-            </div>
-            <div class="box-content">
-                <?php echo $this->getPaymentInfoHtml() ?>
-            </div>
-        </div>
-    </div>
+
 </div>
-</div>
-<script>
-jQuery(document).ready(function() {
-    jQuery(".my-account").addClass("row");
-});
- 
-</script>

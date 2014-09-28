@@ -36,7 +36,7 @@
                         url('../fonts/HelveticaNeue.svg#HelveticaNeue') format('svg');
        }
 
-* { margin:0; padding:0; }
+/* *{ margin:0; padding:0; }*/
 
 body          { font:12px/1.35 Helvetica Neue, sans-serif; color:#838383; text-align:center; font-family:HelveticaNeue, Arial;}
 
