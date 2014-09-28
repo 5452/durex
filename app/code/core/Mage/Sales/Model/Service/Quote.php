@@ -309,7 +309,7 @@ class Mage_Sales_Model_Service_Quote
             $method= $address->getShippingMethod();
             $rate  = $address->getShippingRateByCode($method);
             if (!$this->getQuote()->isVirtual() && (!$method || !$rate)) {
-                Mage::throwException($helper->__('Please specify a shipping method.'));
+                //Mage::throwException($helper->__('Please specify a shipping method.'));
             }
         }
 

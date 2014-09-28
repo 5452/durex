@@ -26,8 +26,16 @@
 /* Reset ================================================================================= */
 * { margin:0; padding:0; font-family: Arial;}
 
-body          { background:#11100F url(../images/bg.jpg) no-repeat 50% 0%; font:12px/1.35 Helvetica Neue, sans-serif; color:#838383; text-align:center; }
+/*body          { background:#11100F url(../images/bg.jpg) no-repeat 50% 0%; font:12px/1.35 Helvetica Neue, sans-serif; color:#838383; text-align:center; }*/
 
+body {
+padding-top: 20px;
+  /*放射型渐变*/
+background:#0370b7;
+  background:radial-gradient(#3bc1e9,#0370b7) 100%;*/
+  min-height: 1000px;
+  color:white;
+}
 img           { border:0; vertical-align:top; }
 
 a             { color:#fff; text-decoration:underline; }
@@ -97,8 +105,8 @@ ul,ol         { list-style:none; }
 .page-popup .product-name { padding-top:8px; }
 .page-popup .btn-cart { height:27px; margin:0 0 8px 0; }
 .page-popup .price-box { margin:8px 0 8px 0; }
-.main-container { background:#000; padding:30px 40px 40px 40px; margin-top:40px; }
-.main { background:#000; }
+.main-container {  padding:30px 40px 40px 40px; margin-top:40px; }
+.main { }
 .main p{color:#fff}
 
 .cms-index-index .main-container { background:none; padding:0; }
@@ -1452,7 +1460,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 .slider_holder { width:1020px; height:567px; }
 
-.container { width:1020px; height:567px; overflow:hidden; position:relative; background:#000; }
+.container { width:1020px; height:567px; overflow:hidden; position:relative;  }
 div.slides { position:absolute; top:0; left:0; }
 ul.slides { position:absolute; top:0; left:0; list-style:none; padding:0; margin:0; }
 div.slides > div,ul.slides li { position:absolute; top:0; width:1020px; display:block; padding:0; margin:0; }

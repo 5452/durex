@@ -5,8 +5,8 @@
 /* Space out content a bit */
 body {
   /*放射型渐变*/
-  background: #0370b7;
-  background: radial-gradient(#3bc1e9,#0370b7) 100%;
+/*  background: #0370b7;
+  background: radial-gradient(#3bc1e9,#0370b7) 100%;*/
   min-height: 768px;
 }
 .wrapper {

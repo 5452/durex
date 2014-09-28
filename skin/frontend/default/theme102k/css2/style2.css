@@ -334,6 +334,9 @@ li.car span{
 .carlist table#shopping-cart-totals-table td.a-right{
 	text-align: left;
 }
+#habla_both_div{
+	display: none!important;
+}
 @media screen and (max-width: 760px){
 	button.loginBtnCY {
 		margin-left: 0!important;

@@ -33,19 +33,7 @@
  */
 class Mage_Sales_Model_Api_Resource extends Mage_Api_Model_Resource_Abstract
 {
-	public function aa()
-	{
-		$_SOAP = new SoapClient('http://http://124.205.25.148/m/index.php/api/soap/?wsdl');
-		$sessionId = $_SOAP->login('Henry', '000000');
-		$orderList = $_SOAP->call($sessionId, 'sales_order.list',array(array('created_at'=>array
-				('from'=>$formTime,'to'=>$toTime2))) );
-		foreach($orderList as $order){
-			echo var_export($order);
-			break;
-		}
-		
-		return 1;
-	}
+	 
     /**
      * Default ignored attribute codes per entity type
      *

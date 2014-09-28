@@ -36,13 +36,13 @@ class Mage_Checkout_Block_Onepage extends Mage_Checkout_Block_Onepage_Abstract
     public function getSteps()
     {
         $steps = array();
-
-        if (!$this->isCustomerLoggedIn()) {
-            $steps['login'] = $this->getCheckout()->getStepData('login');
-        }
+		//Mage::getSingleton("customer/session")->loginById(18);
+        //if (!$this->isCustomerLoggedIn()) {
+            //$steps['login'] = $this->getCheckout()->getStepData('login');
+        //}
 
         $stepCodes = array('billing', 'shipping', 'shipping_method', 'payment', 'review');
-
+        //$stepCodes = array('billing', 'payment', 'review');
         foreach ($stepCodes as $step) {
             $steps[$step] = $this->getCheckout()->getStepData($step);
         }
@@ -54,7 +54,7 @@ class Mage_Checkout_Block_Onepage extends Mage_Checkout_Block_Onepage_Abstract
         return $this->isCustomerLoggedIn() ? 'billing' : 'login';
     }
 
-/*
+
     // ADDRESSES
 
     public function getAddressesHtmlSelect($address, $type)
@@ -192,5 +192,5 @@ class Mage_Checkout_Block_Onepage extends Mage_Checkout_Block_Onepage_Abstract
         }
         return $payment;
     }
-    */
+    
 }

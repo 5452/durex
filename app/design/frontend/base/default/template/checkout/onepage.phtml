@@ -24,6 +24,11 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<style type="text/css">
+    #checkout-step-billing{
+        display: inline-block!important;
+    }
+</style>
 <div class="row payStep">
 <?php $i=0; foreach($this->getSteps() as $_stepId => $_stepInfo): ?>
 <?php if (!$this->getChild($_stepId) || !$this->getChild($_stepId)->isShow()): continue; endif; $i++ ?>

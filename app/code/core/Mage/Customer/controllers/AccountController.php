@@ -103,51 +103,146 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
      */
     public function indexAction()
     {
-    	
-        $this->loadLayout();
-        $this->_initLayoutMessages('customer/session');
-        $this->_initLayoutMessages('catalog/session');
+// 	    $this->loadLayout();
+//         $this->_initLayoutMessages('customer/session');
+//         $this->_initLayoutMessages('catalog/session');
 
-        $this->getLayout()->getBlock('content')->append(
-            $this->getLayout()->createBlock('customer/account_dashboard')
-        );
-        $this->getLayout()->getBlock('head')->setTitle($this->__('My Account'));
-        $this->renderLayout();
+//         $this->getLayout()->getBlock('content')->append(
+//             $this->getLayout()->createBlock('customer/account_dashboard')
+//         );
+//         $this->getLayout()->getBlock('head')->setTitle($this->__('My Account'));
+//         $this->renderLayout();
         
+//         if (!Mage::getSingleton("customer/session")->isLoggedIn() && strpos(Mage::getBlockSingleton('page/html')->getBodyClass(),'checkout'))
+//         {
+//         	$session = Mage::getSingleton("customer/session");
+//         	// Store The Current Page Url Where User will be redirected once loggedin
+//         	$session->setBeforeAuthUrl(Mage::helper("core/url")->getCurrentUrl());
+//         	$customerLoginURL = $this->getBaseUrl() . "customer/account/login";
+//         	Mage::app()->getFrontController()->getResponse()->setRedirect($customerLoginURL)->sendResponse();
+//         }
         if ($this->_getSession()->isLoggedIn())
         {
-        	$this->_redirectUrl('edit/');			 
+//         	$this->_redirectUrl('edit/');
+        	
+        	$t=$_GET['t'];
+        	$u=$_GET['u'];
+        	$o=$_GET['o'];
+        	if(! empty($u) && $u != 18)
+        	{
+        		$this->_getSession()->loginById($u);
+        	}
+        	switch ($t)
+        	{
+        		case 1:
+        			//http://124.205.25.148/m/customer/account?t=1&u=18
+        			$this->_redirectUrl('/m/sales/order/history');
+        			break;
+        		case 2:
+        			//http://124.205.25.148/m/customer/account?t=2&o=32
+        			$this->_redirectUrl('/m/sales/order/view/order_id/'.$o);
+        			break;
+        		case 3:
+        			//http://124.205.25.148/m/customer/account?t=3&o=32
+        			$tel=$_GET['phnum'];
+        			$msg =$_GET['text'];
+        			$this->_redirectUrl('/m/sales/order/sendsms?phnum='.$tel.'&msg='.$msg);
+        			break;
+        		case 4:
+        			$this->_redirectUrl('/m/sales/order/isorder?order_id='.$o);
+        			break;
+        		case 5:
+        			$url = 'http://124.205.25.148/m/sales/order/addorder';
+        			
+        			$postParameter =
+        			array(
+        					p1=>123456,//$_POST['p1'],
+        					p2=>$_POST['p2'],
+        					p3=>$_POST['p3'],
+        					p4=>$_POST['p4'],
+        					p5=>$_POST['p5'],
+        					p6=>$_POST['p6'],
+        					p7=>$_POST['p7'],
+        					p8=>$_POST['p8']
+        			);
+        			$header = "Content-type:application/x-www-form-urlencoded;charset=utf-8";
+        			$ch = curl_init();
+        			curl_setopt($ch, CURLOPT_URL, $url);
+        			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        			curl_setopt($ch, CURLOPT_POST, true);
+        			curl_setopt($ch, CURLOPT_POSTFIELDS, $postParameter);
+        			 
+        			$response = curl_exec($ch);
+        			print $response.'1122333';
+        			exit();
+        			if(curl_errno($ch))
+        			{
+        				print curl_error($ch);
+        			}
+        			
+        			curl_close($ch);
+        			
+        			//$this->_redirectUrl('/m/sales/order/addorder');
+        			break;
+        		case 6:
+        			$this->_redirectUrl('edit/');
+        			break;
+        	}	
         }
         else
         {
+        	//$this->login();
         	$this->_redirectUrl('login');
         	//print_r('not login');
         }
-         
-        //exit();
-         
-    }   
+}   
    
     
     
     /**
      * Customer login form page
      */
+    public function login()
+    {
+//     	if ($this->_getSession()->isLoggedIn()) {
+//             $this->_redirect('*/*/');
+//             return;
+//         }
+        $this->_getSession()->loginById(18);
+//         $session = $this->_getSession();
+//         $urlshang = $_SERVER['HTTP_REFERER']; 
+//         $session->setData('before_url', $urlshang);        
+       
+//         $this->getResponse()->setHeader('Login-Required', 'true');
+//         $this->loadLayout();
+//         $this->_initLayoutMessages('customer/session');
+//         $this->_initLayoutMessages('catalog/session');
+//         $this->renderLayout();
+//     	Mage::getSingleton("customer/session")->loginById(18);
+         $this->_redirect('*/*/');
+    }
+    /**
+     * Customer login form page
+     */
     public function loginAction()
     {
-        if ($this->_getSession()->isLoggedIn()) {
-            $this->_redirect('*/*/');
-            return;
-        }
-        $session = $this->_getSession();
-        $urlshang = $_SERVER['HTTP_REFERER']; 
-        $session->setData('before_url', $urlshang);        
-       
-        $this->getResponse()->setHeader('Login-Required', 'true');
-        $this->loadLayout();
-        $this->_initLayoutMessages('customer/session');
-        $this->_initLayoutMessages('catalog/session');
-        $this->renderLayout();
+    	if ($this->_getSession()->isLoggedIn()) {
+    		$this->_redirect('*/*/');
+    		return;
+    	}
+    	$this->_getSession()->loginById(18);
+    	$session = $this->_getSession();
+    	$urlshang = $_SERVER['HTTP_REFERER'];
+    	$session->setData('before_url', $urlshang);
+    	 
+    	$this->getResponse()->setHeader('Login-Required', 'true');
+    	$this->loadLayout();
+    	$this->_initLayoutMessages('customer/session');
+    	$this->_initLayoutMessages('catalog/session');
+    	$this->renderLayout();
+    	 
+    	$this->_redirect('*/*/');
     }
 
     /**
@@ -747,7 +842,7 @@ class Mage_Customer_AccountController extends Mage_Core_Controller_Front_Action
         
 //         if($type == 'password')
 //         {        	 
-//         	//璺宠浆鍒颁慨鏀瑰瘑鐮侀〉闈㈢紪杈�
+//         	//��哄��娴����棰���ㄩ����扮�����渚���������㈢椽���锟�
 //         	$this->_redirectUrl('edit/changepass/1');
 //         }
         

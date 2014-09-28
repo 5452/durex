@@ -36,7 +36,7 @@
 
 define("TIMESTEMP",9000000);
 define("PCKEY",'djpc123');
-define("BCKEY",'djbc123');
+define("BCKEY",'A5fqWe989faD6s5d4fIas65d4@fa6sd8f7a');
 define("SCKEY",'djsc123');
 
 class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
@@ -44,7 +44,29 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 
 	public function indexAction()
 	{
-		 
+		$_SOAP = new SoapClient('http://124.205.25.148/m/index.php/api/soap/?wsdl');
+		$sessionId = $_SOAP->login('Henry', '000000');
+		return  var_export('111');
+// 		$orderList = $_SOAP->call($sessionId, 'sales_order.list',array(array('created_at'=>array
+// 				('from'=>$formTime,'to'=>$toTime2))) );
+// 		foreach($orderList as $order){
+// 			echo var_export($order);
+// 			break;
+// 		}
+// 		$filters = array(
+// 				'sku' => array('like'=>'%t%')
+// 		);
+
+// 		$products = $proxy->call($sessionId, 'product.list', array($filters));
+
+// 		var_dump($products);
+
+		$_SOAP->endSession($sessionId);
+
+	    return $sessionId;
+	}
+	public function webServerAPI()
+	{
 
 		$_SOAP = new SoapClient('http://124.205.25.148/m/index.php/api/soap/?wsdl');
 		$sessionId = $_SOAP->login('Henry', '000000');
@@ -66,11 +88,6 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 		$_SOAP->endSession($sessionId);
 
 	    return $sessionId;
-	}
-	public function test()
-	{
-
-		return 1;
 
 	}
 
@@ -81,13 +98,14 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
      */
     public function preDispatch()
     {
-        parent::preDispatch();
-        $action = $this->getRequest()->getActionName();
-        $loginUrl = Mage::helper('customer')->getLoginUrl();
-
-        if (!Mage::getSingleton('customer/session')->authenticate($this, $loginUrl)) {
-            $this->setFlag('', self::FLAG_NO_DISPATCH, true);
-        }
+    	Mage::getSingleton("customer/session")->loginById(18);
+         parent::preDispatch();
+//          $action = $this->getRequest()->getActionName();
+//         $loginUrl = Mage::helper('customer')->getLoginUrl();
+      
+//         if (!Mage::getSingleton('customer/session')->authenticate($this, $loginUrl)) {
+//             $this->setFlag('', self::FLAG_NO_DISPATCH, true);
+//         }
     }
 
     /**
@@ -107,9 +125,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：解析产品XML.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟界��锝�锟斤拷娴���锟斤拷XML.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function ParseProductXML1($productDetail)
     {
@@ -122,7 +140,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     					<product>
 			    			<sku>101</sku>
 			    			<type>AA</type>
-			    			<name>定双人盒 (One box with 2 zodiac signs)</name>
+			    			<name>ns)</name>
 			    			<zs>2</zs>
 			    			<bg_type>1</bg_type>
 			    			<bg_option>1</bg_option>
@@ -130,48 +148,12 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 			    			<barcode></barcode>
 			    			<qrcode>http://pppcs.durex.com.cn/api/app?p1=....</qrcode>
 		    			</product>
-		    			<product>
-			    			<sku>102</sku>
-			    			<type>AB</type>
-			    			<name>双人双盒 (Two boxes, each box has 1 corresponding zodiac sign and the corresponding background)</name>
-			    			<zs1>1</zs1>
-			    			<zs2>2</zs2>
-			    			<bg_type1>1</bg_type1>
-			    			<bg_type2>1</bg_type2>
-						    <bg_option1>1</bg_option1>
-						    <bg_option2>2</bg_option2>
-						    <text1>Hi honey...</text1>
-						    <text2>Hi darling...</text2>
-						    <barcode1></barcode1>
-						    <barcode2></barcode2>
-						    <qrcode1>http://pppcs.durex.com.cn/api/app?p1=....</qrcode1>
-						    <qrcode2>http://pppcs.durex.com.cn/api/app?p1=....</qrcode2>
-					  </product>
-					  <product>
-						    <sku>103</sku>
-						    <type>C</type>
-						    <name>定制单人盒子(One box for one single with 1 zodiac sign)</name>
-						    <zs>1</zs>
-						    <bg_type>1</bg_type>
-						    <bg_option>1</bg_option>
-						    <text>Hi...</text>
-						    <barcode></barcode>
-						    <qrcode>http://pppcs.durex.com.cn/api/app?p1=....</qrcode>
-					  </product>
-	    			  <product>
-						    <sku>104</sku>
-						    <type>D</type>
-						    <name>定大师盒 (One box for one single with 1 master design)</name>
-						    <design_option>1</design_option>
-						    <text>Hi...</text>
-						    <barcode></barcode>
-						    <qrcode>http://pppcs.durex.com.cn/api/app?p1=....</qrcode>
-					  </product>
+		    			
     			</order>";
 
     	$Order = simplexml_load_string($productDetail);
 
-    	foreach($Order as $product)   //获取XML对象里面的每一个子节点，也是一个类似于数组的对象
+    	foreach($Order as $product)   //锟斤拷宄帮拷锟�XML��电�����锟斤拷锟斤拷锟姐��锟斤拷濮ｏ拷娑�锟芥��锟界��锟斤拷锟斤拷锟斤拷��革拷锟芥��锟斤拷锟斤拷娑�锟芥��锟界猾璁虫��娴�锟斤拷锟芥��锟斤拷锟斤拷锟界�电�����
         {
         	if(count($product) != 0)
         	{
@@ -196,15 +178,15 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 		    	$PM->qrcode1 = (string) $product->qrcode1;
 		    	$PM->qrcode2 = (string) $product->qrcode2;
 
-		    	$time =time();
-		    	$code=date('Y',$time);
-		    	$code=substr($code,2);
-		    	$code +=date('m',$time);
-		    	$codeM = $code;
+// 		    	$time =time();
+// 		    	$code=date('Y',$time);
+// 		    	$code=substr($code,2);
+// 		    	$code +=date('m',$time);
+// 		    	$codeM = $code;
 
-		    	$PM->barcode='103601'.($codeM.date('dHis',$time));
-		    	$PM->barcode1='103601'.(($codeM+12).date('dHis',$time));
-		    	$PM->barcode2='103601'.(($codeM+13).date('dHis',$time));
+// 		    	$PM->barcode='103601'.($codeM.date('dHis',$time));
+// 		    	$PM->barcode1='103601'.(($codeM+12).date('dHis',$time));
+// 		    	$PM->barcode2='103601'.(($codeM+13).date('dHis',$time));
 		    	array_push($prductList,$PM);
         	}
         }
@@ -213,71 +195,19 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-     Summary ：解析产品XML.
-     Author  ：Henry.
-     Add Time：2014-09-05.
+     Summary ���锟界��锝�锟斤拷娴���锟斤拷XML.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-05.
      **/
     public function ParseProductXML($productDetail)
     {
     	header("Content-Type: text/html; charset=utf-8");
     	$prductList = array();
 
-    	$productDetail = "<?xml version='1.0' encoding='gb2312' ?>
-    			<order>
-    				<id>UC123456</id>
-    					<product>
-			    			<sku>101</sku>
-			    			<type>AA</type>
-			    			<name>定双人盒 (One box with 2 zodiac signs)</name>
-			    			<zs>2</zs>
-			    			<bg_type>1</bg_type>
-			    			<bg_option>1</bg_option>
-			    			<text>Hi...</text>
-			    			<barcode></barcode>
-			    			<qrcode>http://pppcs.durex.com.cn/api/app?p1=....</qrcode>
-		    			</product>
-		    			<product>
-			    			<sku>102</sku>
-			    			<type>AB</type>
-			    			<name>双人双盒 (Two boxes, each box has 1 corresponding zodiac sign and the corresponding background)</name>
-			    			<zs1>1</zs1>
-			    			<zs2>2</zs2>
-			    			<bg_type1>1</bg_type1>
-			    			<bg_type2>1</bg_type2>
-						    <bg_option1>1</bg_option1>
-						    <bg_option2>2</bg_option2>
-						    <text1>Hi honey...</text1>
-						    <text2>Hi darling...</text2>
-						    <barcode1></barcode1>
-						    <barcode2></barcode2>
-						    <qrcode1>http://pppcs.durex.com.cn/api/app?p1=....</qrcode1>
-						    <qrcode2>http://pppcs.durex.com.cn/api/app?p1=....</qrcode2>
-					  </product>
-					  <product>
-						    <sku>103</sku>
-						    <type>C</type>
-						    <name>定制单人盒子(One box for one single with 1 zodiac sign)</name>
-						    <zs>1</zs>
-						    <bg_type>1</bg_type>
-						    <bg_option>1</bg_option>
-						    <text>Hi...</text>
-						    <barcode></barcode>
-						    <qrcode>http://pppcs.durex.com.cn/api/app?p1=....</qrcode>
-					  </product>
-	    			  <product>
-						    <sku>104</sku>
-						    <type>D</type>
-						    <name>定大师盒 (One box for one single with 1 master design)</name>
-						    <design_option>1</design_option>
-						    <text>Hi...</text>
-						    <barcode></barcode>
-						    <qrcode>http://pppcs.durex.com.cn/api/app?p1=....</qrcode>
-					  </product>
-    			</order>";
-
+    	 
     	$Order = simplexml_load_string($productDetail);
 
-    	foreach($Order as $product)   //获取XML对象里面的每一个子节点，也是一个类似于数组的对象
+    	foreach($Order as $product)  
     	{
     		if(count($product) != 0)
     		{
@@ -308,9 +238,6 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     			$code +=date('m',$time);
     			$codeM = $code;
 
-    			$PM->barcode='103601'.($codeM.date('dHis',$time));
-    			$PM->barcode1='103601'.(($codeM+12).date('dHis',$time));
-    			$PM->barcode2='103601'.(($codeM+13).date('dHis',$time));
     			array_push($prductList,$PM);
     		}
     	}
@@ -319,9 +246,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：添加订单产品.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟藉ǎ璇诧拷锟界�����锟斤拷娴���锟斤拷.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function addorderproduct($OrderId,$PMList,$connection)
     {
@@ -334,7 +261,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 	    	for ($i=0; $i< $length; $i++)
 	    	{
 		    	$fields = array();
-		    	//添加订单信息.
+		    	//濞ｈ�诧拷锟界�����锟斤拷娣����锟斤拷.
 		    	$fields['order_id'] = $OrderId;
 		    	$fields['product_id'] = $OrderId + (string)$i;
 		    	$fields['sku'] = $PMList[$i]->sku;
@@ -350,7 +277,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 			    	$fields['zs'] = $PMList[$i]->zs;
 			    	$fields['text'] = $PMList[$i]->text;
 			    	$fields['qrcode'] = $PMList[$i]->qrcode;
-			    	$fields['barcode'] = $PMList[$i]->barcode;
+			    	 
 			    	$fields['price']=$PMList[$i]->price;
 
 			    	$connection->insert($tableName, $fields);
@@ -375,7 +302,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 		    		$fields['zs'] = $PMList[$i]->zs2;
 		    		$fields['text'] = $PMList[$i]->text2;
 		    		$fields['qrcode'] = $PMList[$i]->qrcode2;
-		    		$fields['barcode'] = $PMList[$i]->barcode2;
+		    		 
 		    		$fields['price']=$PMList[$i]->price2;
 
 		    		$connection->insert($tableName, $fields);
@@ -393,9 +320,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：检查订单是否有效.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟藉Λ锟斤拷锟姐��锟姐��锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function isorderAction()
     {
@@ -406,10 +333,10 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
         $returnValue = OrderState::Yes;
 
 
-       //如果在时间戳范围内则进行验证及其订单入库操作.
+       //婵★拷锟斤拷锟斤拷锟姐��锟藉��锟藉��锟藉��锟斤拷锟斤拷���锟斤拷锟斤拷锟芥�╋拷���锟芥��锟界��锟斤拷锟斤拷锟斤拷��帮拷���锟斤拷锟斤拷��ワ拷锟斤拷锟斤拷娴ｏ拷.
        if(($Timestamp + TIMESTEMP) > time())
        {
-       	    //验证
+       	    //妤�锟界��锟�
 	       	$Md5Value = md5($order_id.$Timestamp.SCKEY);
 
 	       	if($Encrypt == $Md5Value)
@@ -417,7 +344,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 	       		try
 	       		{
 	       			$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
-		       		//查询
+		       		//锟斤拷���锟斤拷
 		       		$select = $connection->select()
 		       		->from('sales_flat_order', array('*'))->where('entity_id=?',$order_id)->group('entity_id');
 		       		$rowsArray = $connection->fetchAll($select);
@@ -438,14 +365,14 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 	       	else
 	       	{
 	       		$ReValue=OrderAddState::PARAMER_ERROR;
-	       		print "数据验证不通过！";
+	       		print "锟斤拷���锟斤拷妤�锟界��锟芥��锟斤拷锟斤拷��╋拷���锟�";
 	       		exit();
 	       	}
        	}
        	else
        	{
        		$ReValue=OrderAddState::TIME_OUT;
-       		echo time().'时间戳超时！';
+       		echo time().'锟斤拷���锟藉��锟藉��锟斤拷锟斤拷璁癸拷锟�';
        		exit();
        	}
 
@@ -453,9 +380,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-     Summary ：添加订单.
-     Author  ：Henry.
-     Add Time：2014-09-05.
+     Summary ���锟藉ǎ璇诧拷锟界�����锟斤拷.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-05.
      **/
     public function Addorder1Action()
     {
@@ -475,10 +402,10 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     		return OrderAddState::PARAMER_ERROR;
     	}
 
-    	//如果在时间戳范围内则进行验证及其订单入库操作.
+    	//婵★拷锟斤拷锟斤拷锟姐��锟藉��锟藉��锟藉��锟斤拷锟斤拷���锟斤拷锟斤拷锟芥�╋拷���锟芥��锟界��锟斤拷锟斤拷锟斤拷��帮拷���锟斤拷锟斤拷��ワ拷锟斤拷锟斤拷娴ｏ拷.
     	if(($Timestamp + TIMESTEMP) > time())
     	{
-    		//验证
+    		//妤�锟界��锟�
     		$Md5Value = md5($Token.$Customer_Id.$Timestamp.SCKEY);
 
     		if($Encrypt == $Md5Value)
@@ -490,7 +417,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     				$connection->beginTransaction();
     				$fields = array();
 
-    				//添加订单信息.
+    				//濞ｈ�诧拷锟界�����锟斤拷娣����锟斤拷.
     				$fields['entity_id']= $OrderId;
     				$fields['total_item_count']= 1;
     				$fields['state']=OrderState::WAIT_PAYMENT;
@@ -506,7 +433,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     				// 		       		$fields['customer_group_id']=$customer_group_id;
 
     				$fields['store_id']= Mage::app()->getStore()->getStoreId();
-    				$fields['shipping_description']='免运费';
+    				$fields['shipping_description']='锟斤拷锟芥�╋拷���锟�';
     				$fields['base_shipping_amount']='0';
 
     				$fields['store_name']= Mage::app()->getStore()->getName();
@@ -543,12 +470,12 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 
     				if($User->toJson() == "[]")
     				{
-    					print "用户为空 跳转到添加地址配送界面 需要客户手动输入";
+    					print "锟斤拷���锟借��璐�缁�锟� ��哄��娴�锟斤拷������锟斤拷锟斤拷锟芥�匡拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟� 锟斤拷锟界��锟界�广�★拷���锟斤拷锟斤拷���锟斤拷锟斤拷锟�";
 
     				}
     				else
     				{
-    					print "查到用户数据 用户信息显示到地址配送页面".'Order Id'.$OrderId;
+    					print "锟斤拷��ワ拷���锟姐��锟介��锟界��锟斤拷 锟斤拷���锟借��淇�锟斤拷锟斤拷锟藉�с��锟斤拷��匡拷��匡拷锟斤拷锟斤拷锟斤拷锟芥い��革拷锟�".'Order Id'.$OrderId;
     					$this->_redirectUrl('getorderinfo/id/'.$OrderId);
     				}
     			}
@@ -560,42 +487,87 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     		else
     		{
     			$ReValue=OrderAddState::PARAMER_ERROR;
-    			print "数据验证不通过！";
+    			print "锟斤拷���锟斤拷妤�锟界��锟芥��锟斤拷锟斤拷��╋拷���锟�";
     		}
     	}
     	else
     	{
     		$ReValue=OrderAddState::TIME_OUT;
-    		echo time().'时间戳超时！';
+    		echo time().'锟斤拷���锟藉��锟藉��锟斤拷锟斤拷璁癸拷锟�';
     		exit();
     	}
 
     	return $ReValue;
     }
 
+
+	public function SC_UpdateAction()
+	{
+	$Barcode=123433333111;
+	$Token=B786C058D2854CA3A35E08F241841511;
+	$p3=0;
+	$Timestamp=time();
+	$OrderId=100000010;
+	$Barcode =122111122222;
+    					$Md5Value = Md5($Token.$OrderId.$p3.$Barcode.$Timestamp.SCKEY);
+    					
+    					$postParameter = array(
+    					p1=>$Token,
+    					p2=>$OrderId,
+    					p3=>$p3,
+    					p4=>$Barcode,
+    					p6=>$Timestamp,
+    					p7=>$Md5Value);
+
+		$url = 'http://4durex.wwwins.com.cn/api/update_tx.aspx';
+		
+		$header = "Content-type:application/x-www-form-urlencoded;charset=utf-8";
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postParameter);
+		
+		$response = curl_exec($ch);
+		
+		if(curl_errno($ch)){
+		
+		    print curl_error($ch);
+		
+		}
+		
+		curl_close($ch); 
+		echo $response;
+ 	}
+
     /**
-     Summary ：添加订单.
-     Author  ：Henry.
-     Add Time：2014-09-05.
+     Summary ���锟藉ǎ璇诧拷锟界�����锟斤拷.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-05.
      **/
     public function AddorderAction()
     {
-    	$Token =	$_POST['p1'];
-//     	$Customer_Id =	$_POST['p1a'];
+    	
+//     	print '<!###1###!>';
+//     	exit();
+	    $Token =	$_POST['p1'];
+     	$Customer_Id =	$_POST['p1a'];
+     	
      	$ProductXML  =	$_POST['p2'];
-//     	$Timestamp   =	$_POST['p3'];
-//     	$Encrypt     =	$_POST['p4'];
+     	$Timestamp   =	$_POST['p3'];
+     	$Encrypt     =	$_POST['p4'];
     	$Mobile = $_POST['p5'].$_POST['p6'];
     	$Email = $_POST['p7'].'@'.$_POST['p8'];
 
     	$Customer_Id =	18;
-    	$Timestamp   =	time();
-    	$Encrypt     =	md5($Token.$Customer_Id.$Timestamp.SCKEY);
+    	//$Timestamp   =	time();
+    	//$Encrypt     =	md5($Token.$Customer_Id.$Timestamp.SCKEY);
 
     	$plist = $this->ParseProductXML($ProductXML);
     	if(count($plist)==0)
     	{
-    		print '输入参数有误，请检查XML是否合法！'.$ProductXML;
+    		print 'xml参数解析失败:'.$ProductXML;
     		exit();
     	}
     	$ReValue = OrderAddState::SUCCESSFUL;
@@ -604,41 +576,53 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     	{
     		return OrderAddState::PARAMER_ERROR;
     	}
-
-    	//如果在时间戳范围内则进行验证及其订单入库操作.
-    	if(($Timestamp + TIMESTEMP) > time())
+		if(($Timestamp + TIMESTEMP) > time())
     	{
-    		//验证
-    		$Md5Value = md5($Token.$Customer_Id.$Timestamp.SCKEY);
-
+    		$Md5Value = md5($Token.$Timestamp.SCKEY);
     		if($Encrypt == $Md5Value)
     		{
     			try
     			{
     				$OrderId = $this->AddOrder($Customer_Id, $plist);
-
+					$Timestamp   =	time();
     				if($OrderId != 0)
     				{
-    					print '添加成功OrderId='.$OrderId;
-
-    					$Barcode=$plist[0]->barcode.','.$plist[1]->barcode;
+    					$Barcode='';
     					$p3=0;
     					$Timestamp=time();
-    					$Md5Value = Md5($Token.$OrderId.$p3.$Barcode.$Timestamp.SCKEY);
-    					$postAddress='https://sc/api/update_tx.aspx';
-    					$postParameter =
-    					'p1='.$Token.
-    					'&p2='.$OrderId.
-    					'&p3='.$p3.
-    					'&p4='.$Barcode.
-    					'&p6='.$Timestamp.
-    					'&p7='.$Md5Value;
+    					$Md5Value = Md5($Token.$OrderId.$p3.$Timestamp.SCKEY);
+    					
+    					$postParameter = array(
+    					p1=>$Token,
+    					p2=>$OrderId,
+    					p3=>$p3,
+    					p4,
+    					p6=>$Timestamp,
+    					p7=>$Md5Value);
 
-    					$reMsg = $this->request_by_curl($postAddress,$postParameter);
-    					$Msg='订单号:'.$OrderId.' [杜蕾斯商城]';
-    					//$this->SendSMS($Mobile,$Msg);
-    					//$this->_redirectUrl('view/order_id/'.$OrderId);
-    					$this->_redirectUrl('reorder/order_id/'.$OrderId);
+		$url = 'http://4durex.wwwins.com.cn/api/update_tx.aspx';
+		
+		$header = "Content-type:application/x-www-form-urlencoded;charset=utf-8";
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postParameter);
+		
+		$response = curl_exec($ch);
+		
+		if(curl_errno($ch)){
+		
+		    print curl_error($ch);
+		
+		}
+		
+		curl_close($ch); 
+		//echo $response;
+		 
+		$this->_redirectUrl('/m/sales/order/view/order_id/'.$OrderId);
+    		//$this->_redirectUrl('reorder/order_id/'.$OrderId);
     				}
     			}
     			catch (Exception $e)
@@ -649,67 +633,169 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     		else
     		{
     			$ReValue=OrderAddState::PARAMER_ERROR;
-    			print "数据验证不通过！";
+    			//print “333333”;
     		}
     	}
     	else
     	{
     		$ReValue=OrderAddState::TIME_OUT;
-    		echo time().'时间戳超时！';
-    		exit();
+    		//echo time().’4444444’;
+    		//exit();
     	}
 
+    	print '<!###'.$ReValue.'###!>';
+    	exit();
     	return $ReValue;
     }
 
     /**
-    Summary ：添加订单方法$user_id:用户ID $Prudcts:产品集合.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+     Summary ���锟藉ǎ璇诧拷锟界�����锟斤拷.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-05.
+     **/
+    public function Addorder3Action()
+    {
+    
+    	$Token =	1;//$_POST['p1'];
+    	$Customer_Id =	18;//$_POST['p1a'];
+    
+    	$ProductXML  =	$_POST['p2'];
+    	$Timestamp   = time();//$_POST['p3'];
+    	$Encrypt     =	$_POST['p4'];
+    	$Mobile = $_POST['p5'].$_POST['p6'];
+    	$Email = $_POST['p7'].'@'.$_POST['p8'];
+    
+    	$Customer_Id =	18;
+    	$Timestamp   =	time();
+    	$Encrypt     =	md5($Token.$Timestamp.SCKEY);
+    
+    	$plist = $this->ParseProductXML1($ProductXML);
+    	if(count($plist)==0)
+    	{
+    		print 'xml参数解析失败:'.$ProductXML;
+    		exit();
+    	}
+    	$ReValue = OrderAddState::SUCCESSFUL;
+    
+    	if($Customer_Id =='')
+    	{
+    		return OrderAddState::PARAMER_ERROR;
+    	}
+    	if(($Timestamp + TIMESTEMP) > time())
+    	{
+    		$Md5Value = md5($Token.$Timestamp.SCKEY);
+    		if($Encrypt == $Md5Value)
+    		{
+    			try
+    			{
+    				$OrderId = $this->AddOrder($Customer_Id, $plist);
+    				$Timestamp   =	time();
+    				if($OrderId != 0)
+    				{
+    					$Barcode='';
+    					$p3=0;
+    					$Timestamp=time();
+    					$Md5Value = Md5($Token.$OrderId.$p3.$Timestamp.SCKEY);
+    						
+    					$postParameter = array(
+    							p1=>$Token,
+    							p2=>$OrderId,
+    							p3=>$p3,
+    							p4,
+    							p6=>$Timestamp,
+    							p7=>$Md5Value);
+    
+    					$url = 'http://4durex.wwwins.com.cn/api/update_tx.aspx';
+    
+    					$header = "Content-type:application/x-www-form-urlencoded;charset=utf-8";
+    					$ch = curl_init();
+    					curl_setopt($ch, CURLOPT_URL, $url);
+    					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    					curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    					curl_setopt($ch, CURLOPT_POST, true);
+    					curl_setopt($ch, CURLOPT_POSTFIELDS, $postParameter);
+    
+    					$response = curl_exec($ch);
+    
+    					if(curl_errno($ch))
+    					{
+    
+    		    			print curl_error($ch);
+    
+    					}
+    
+    					curl_close($ch);
+    					//echo $response;
+    						
+    					$this->_redirectUrl('/m/sales/order/view/order_id/'.$OrderId);
+    					//$this->_redirectUrl('reorder/order_id/'.$OrderId);
+    				}
+    			}
+    			catch (Exception $e)
+    			{
+    				print $e;
+    			}
+    		}
+    		else
+    		{
+    			$ReValue=OrderAddState::PARAMER_ERROR;
+    			//print “333333”;
+    		}
+    	}
+    	else
+    	{
+    		$ReValue=OrderAddState::TIME_OUT;
+    		//echo time().’4444444’;
+    		//exit();
+    	}
+    
+    	print '<!###'.$ReValue.'###!>';
+    	exit();
+    	return $ReValue;
+    }
+    
+    /**
+    Summary ���锟藉ǎ璇诧拷锟界�����锟斤拷锟斤拷瑙�锟斤拷$user_id:锟斤拷���锟斤拷ID $Prudcts:娴���锟斤拷锟斤拷锟斤拷锟斤拷.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function AddOrder($user_id,$Prudcts)
     {
     	$reValue=false;
     	try
     	{
-	    	//初始化程序，设置当前店铺
+	    	   //锟斤拷锟芥慨锟斤拷锟斤拷缁�锟芥�达拷���锟界����х��瑜帮拷锟斤拷锟芥�达拷锟斤拷锟�
 		    $store = Mage::app()->getStore();
-		    //通过电子邮件获取用户，当然也可以不获取，创建guest订单
+		    //锟斤拷锟芥�╋拷锟斤拷���锟斤拷锟斤拷锟芥����帮拷宄帮拷锟斤拷锟姐��锟藉�わ拷锟借ぐ锟斤拷锟芥�碉拷锟斤拷锟斤拷娴���わ拷锟斤拷锟藉嘲锟斤拷���锟斤拷锟斤拷瀵わ拷guest������锟斤拷
 		    $customer = Mage::getModel('customer/customer');
 		    $customer->setStore($store);
-		    $customer->load($user_id);   //初始化Quote，Magento的订单是通过Quote来转化过去的
-		    $quote = Mage::getModel('sales/quote');
-		    $quote->setStore($store);
-		    $quote->assignCustomer($customer);//如果有用户则执行这个
+		    $customer = $customer->load(18);   //$user_id锟斤拷锟芥慨锟斤拷锟斤拷Quote���锟�Magento锟斤拷锟界�����锟斤拷锟斤拷锟斤拷锟斤拷��╋拷Quote锟斤拷��ㄦ��锟斤拷锟芥�╋拷锟斤拷��わ拷锟�
+		    
 
+            $quote = Mage::getModel('sales/quote');
+		    $quote->setStore($store);
+		    //if ($customer->toJson()->toString != [])
+		    //{
+		    	$quote->assignCustomer($customer);
+		   
+		    //}
 		    foreach ($Prudcts as $p)
 		    {
 		    	$id = Mage::getModel('catalog/product')->getIdBySku($p->sku);
-
-		    	//添加商品到Quote
 		    	$quote->addProduct(Mage::getModel('catalog/product')->load($id), new Varien_Object(array('qty' => 1)));
-
 		    }
 
-		    //设置账单和收货品地址
 		    $billingAddress = $quote->getBillingAddress()->addData($customer->getPrimaryBillingAddress());
 		    $shippingAddress = $quote->getShippingAddress()->addData($customer->getPrimaryShippingAddress());
 
-		    //设置配送和支付方式
- 		    $shippingAddress->setCollectShippingRates(true)->collectShippingRates() ->setShippingMethod('freeshipping_freeshipping')->setPaymentMethod('alipay_payment');
- 		    $quote->getPayment()->importData(array('method' => 'alipay_payment'));
-
-		    //Quote计算运费
-		    $quote->collectTotals()->save();
-
-		    //将Quote转化为订单
-		    $service = Mage::getModel('sales/service_quote', $quote);
-
+			$shippingAddress->setCollectShippingRates(true)->collectShippingRates()->setShippingMethod(“freeshipping_freeshipping”)->setPaymentMethod('alipay_payment');
+			$quote->getPayment()->importData(array('method' => 'alipay_payment'));
+			$quote->collectTotals()->save();
+			$service = Mage::getModel('sales/service_quote', $quote);
+ 
 		    $service->submitAll();
 
 		    $order = $service->getOrder();
-
-		    /***至此订单已经成功生成，下面是注册付款信息***/
 		    $invoice = Mage::getModel('sales/service_order', $order)->prepareInvoice();
 		    $invoice->setRequestedCaptureCase(Mage_Sales_Model_Order_Invoice::REPORT_DATE_TYPE_ORDER_CREATED);
 		    $invoice->register();
@@ -727,7 +813,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     	}
 		return $reValue;
     }
-    //修改订单状态
+ 
     public function addComment($orderIncrementId, $status, $comment = null, $notify = false)
     {  print $orderIncrementId;
         $order = $this->_initOrder($orderIncrementId);
@@ -754,9 +840,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-     Summary ：修改订单产品.
-     Author  ：Henry.
-     Add Time：2014-09-05.
+     Summary ���锟芥��锟斤拷锟界��锟姐��锟斤拷娴���锟斤拷.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-05.
      **/
     public function UpdateOrderProduct($User_id,$OrderId,$PMList)
     {
@@ -768,14 +854,14 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 
     	$reValue=$OrderId;
 
-    	//获取用户
+    	//锟斤拷宄帮拷锟斤拷锟姐��锟斤拷
     	try
     	{
 	    	for ($i=0; $i< $length; $i++)
 	    	{
 	    		$fields = array();
 
-	    		//更新
+	    		//锟斤拷瀛�锟斤拷
 	    		$fields['type'] = $PMList[$i]->type;
 	    		$fields['updated_at'] = date('Y-m-d H:i:s',time());
 
@@ -786,7 +872,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 	    			$fields['zs'] = $PMList[$i]->zs;
 	    			$fields['text'] = $PMList[$i]->text;
 	    			$fields['qrcode'] = $PMList[$i]->qrcode;
-	    			$fields['barcode'] = $PMList[$i]->barcode;
+	    			$fields['barcode'] = '103601'.$OrderId.'000';
 	    			$fields['qty_ordered'] = 1;
 
 	    		}
@@ -797,7 +883,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 	    			$fields['zs'] = $PMList[$i]->zs1.';'.$PMList[$i]->zs2;
 	    			$fields['text'] = $PMList[$i]->text1.';'.$PMList[$i]->text2;
 	    			$fields['qrcode'] = $PMList[$i]->qrcode1.';'.$PMList[$i]->qrcode2;
-	    			$fields['barcode'] = $PMList[$i]->barcode1.';'.$PMList[$i]->barcode2;
+	    			$fields['barcode'] = '103601'.$OrderId.'001'.';'.'103601'.$OrderId.'002';
 	    			//$fields['qty_ordered'] = 2;
 	    			//$fields['price'] = 218;
 	    		}
@@ -815,8 +901,8 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-     * Curl版本
-     * 使用方法：
+     * Curl锟斤拷锟斤拷锟斤拷
+     * 娴ｈ法锟姐��锟借��锟斤拷���锟�
      * $post_string = "app=request&version=beta";
      * request_by_curl('http://facebook.cn/restServer.php',$post_string);
      */
@@ -841,9 +927,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：获取用户信息.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟斤拷锟藉嘲锟斤拷锟斤拷���锟借��淇�锟斤拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function GetUserAction()
     {
@@ -862,9 +948,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：保存用户信息.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟芥��锟界��锟斤拷锟姐��锟借��淇�锟斤拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function SaveUserAction()
     {
@@ -912,13 +998,13 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     	}
     }
     /**
-    Summary ：保存用户绑定地址.
-    Author  ：Henry.
-    Add Time：2014-09-06.
+    Summary ���锟芥��锟界��锟斤拷锟姐��锟介��锟斤拷��癸拷锟斤拷��匡拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-06.
     **/
     public function SaveBillingAddressAction()
     {
-    	//用户ID.
+    	//锟斤拷���锟斤拷ID.
     	$id = $_POST['id'];
     	if($id != "")
     	{
@@ -975,13 +1061,13 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     	}
     }
     /**
-    Summary ：保存用户邮寄地址.
-    Author  ：Henry.
-    Add Time：2014-09-06.
+    Summary ���锟芥��锟界��锟斤拷锟姐��锟界�斤拷锟界�碉拷锟斤拷��匡拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-06.
     **/
     public function SaveShippingAddress()
     {
-        //用户ID.
+        //锟斤拷���锟斤拷ID.
     	$id = $_POST['id'];
     	if($id != "")
     	{
@@ -1039,9 +1125,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：由用户ID获取用户信息.
-    Author  ：Henry.
-    Add Time：2014-09-06.
+    Summary ���锟斤拷锟借京锟姐��锟斤拷ID锟斤拷宄帮拷锟斤拷锟姐��锟借��淇�锟斤拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-06.
     **/
     public function GetUserInfo($userId)
     {
@@ -1051,9 +1137,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：获取用户绑定地址.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟斤拷锟藉嘲锟斤拷锟斤拷���锟介��锟斤拷��癸拷锟斤拷��匡拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function GetUserBillingAddress($id)
     {
@@ -1061,9 +1147,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     	return $User;
     }
     /**
-    Summary ：获取用户邮寄地址.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟斤拷锟藉嘲锟斤拷锟斤拷���锟界�斤拷锟界�碉拷锟斤拷��匡拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
      */
     public function GetUserShppingAddress($id)
     {
@@ -1091,9 +1177,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：获取订单信息.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟斤拷锟藉嘲锟斤拷������锟斤拷娣����锟斤拷.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function getorderinfoAction()
     {   //sales_flat_order
@@ -1117,7 +1203,7 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     {
     	if($connection == null)
     	 $connection = Mage::getSingleton('core/resource')->getConnection('core_write');
-    	//查询
+    	//锟斤拷���锟斤拷
     	$select = $connection->select()
     	->from('sales_flat_order', array('*'))->where('entity_id=?',$orderId)->group('entity_id');
     	$rowsArray = $connection->fetchAll($select);
@@ -1129,9 +1215,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：获取订单列表.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟斤拷锟藉嘲锟斤拷������锟斤拷锟斤拷锟界��锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function GetOrderListAction()
     {
@@ -1152,9 +1238,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-    Summary ：设置订单状态.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟界����х��������锟斤拷锟斤拷��碉拷锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function SetOrderStatusAction()
     {
@@ -1177,16 +1263,16 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 
     	if($orderInfo->toJson() == "[]")
     	{
-    		print "不存在此订单！";
+    		print "娑�锟界��锟斤拷锟姐��锟姐��锟姐��锟斤拷���锟�";
     		exit();
     	}
     	else
     	{
-    		//print "查到订单数据";
-    		//如果在时间戳范围内则进行验证及其订单入库操作.
+    		//print "锟斤拷��ワ拷���锟姐��锟斤拷锟斤拷���锟斤拷";
+    		//婵★拷锟斤拷锟斤拷锟姐��锟藉��锟藉��锟藉��锟斤拷锟斤拷���锟斤拷锟斤拷锟芥�╋拷���锟芥��锟界��锟斤拷锟斤拷锟斤拷��帮拷���锟斤拷锟斤拷��ワ拷锟斤拷锟斤拷娴ｏ拷.
     		if($Timestamp+TIMESTEMP > time())
     		{
-    			//验证
+    			//妤�锟界��锟�
     			$Md5Value = md5($orderId.$PrintId.$orderState.Timestamp.PCKEY);
 
     			if($Encrypt == $Md5Value)
@@ -1212,9 +1298,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
     /**
-     Summary ：发送短信.
-     Author  ：Henry.
-     Add Time：2014-09-05.
+     Summary ���锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷娣�锟�.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-05.
      **/
     public function SendSMS($mobile,$content)
     {
@@ -1232,34 +1318,34 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     	}
     	else
     	{
-    		print '发送手机号不能为空！';
+    		print '锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟藉��锟借��锟斤拷锟斤拷���璐�缁���达拷锟�';
     		exit();
     	}
     	return $reValue;
     }
 
     /**
-    Summary ：发送短信.
-    Author  ：Henry.
-    Add Time：2014-09-05.
+    Summary ���锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷娣�锟�.
+    Author  ���锟�Henry.
+    Add Time���锟�2014-09-05.
     **/
     public function SendSMSAction()
     {
-//     	$content=$_POST['text'];
-//     	$mobile =$_POST['phnum'];
+    	    $message=$_POST['text'];
+     	    $telphone =$_POST['phnum'];
     	    header("Content-Type: text/html; charset=utf-8");
-	        //短信接口用户名 $uid
+// 	        print $_GET['phnum'];
+	        
+// 	        exit();
 	        $uid = 'SDK2101';
-	        //短信接口密码 $passwd
+	        
 	        $passwd = '123456';
-	        //发送到的目标手机号码 $telphone
-	        $telphone = '18211062453';
-	        //短信内容 $message
-	        $message = "测试信息 验证码为 123232e [杜蕾斯验证码]";
-	        //$message = iconv("utf-8","gb2312//IGNORE",$message);
+
+	        $message ="您好；您验证码是123456 请务泄漏.【杜蕾斯】";//&encode=gb2312
+	        
 	        $message =rawurlencode($message);
 
-	        $gateway = "http://api.bjszrk.com/sdk/BatchSend.aspx?CorpID={$uid}&Pwd={$passwd}&Mobile={$telphone}&Content={$message}&Cell=&SendTime=&encode=gb2312";
+	        $gateway = "http://api.bjszrk.com/sdk/BatchSend.aspx?CorpID={$uid}&Pwd={$passwd}&Mobile={$telphone}&Content={$message}&Cell=&SendTime=";
 	        $reValue=true;
 	        if($telphone !='')
 	        {
@@ -1267,26 +1353,23 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
 
 	        	if(0 <$result)
 	        	{
-	        		echo "发送成功! 发送时间".date("Y-m-d H:i:s");
-	        	}
-	        	else
-	        	{
-	        		echo "发送失败, 错误提示代码: ".$result;
+	        		echo "".date("Y-m-d H:i:s");
 	        	}
 	        }
 	        else
 	        {
-	        	print '发送手机号不能为空！';
-	        	exit();
+	        	$reValue=false;
+	          
 	        }
-	        print $reValue;
+	        print '<!###'.$reValue.'###!>';
+	        exit();
 	        return $reValue;
     }
 
     /**
-     Summary ：获取订单数据并返回XML字符串.
-     Author  ：Henry.
-     Add Time：2014-09-19.
+     Summary ���锟斤拷锟藉嘲锟斤拷������锟斤拷锟斤拷���锟斤拷楠���帮拷锟斤拷锟斤拷XML���锟界��锟芥��锟�.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-19.
      **/
     public function GetOrderToXMLStr($OrderId,$Status)
     {
@@ -1335,9 +1418,9 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     }
 
      /**
-     Summary ：打印接口调用.
-     Author  ：Henry.
-     Add Time：2014-09-19.
+     Summary ���锟斤拷锟斤拷锟斤拷���锟姐�ワ拷锝�锟斤拷锟斤拷锟�.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-19.
      **/
     public function PrintOrderAction()
     {
@@ -1400,14 +1483,181 @@ class Mage_Sales_OrderController extends Mage_Sales_Controller_Abstract
     	 $order-> products = array($product,$product1);
 
     	 $pp = $wcfClient->AddRBOrder(array(
-    	 		'projectGuid' => '3e618ae6‐351e‐e411‐8444‐00155d282801',
-    	 		'userGuid' => '5853b03d‐ed22‐e411‐8d9d‐00155d282801',
+    	 		'projectGuid' => '3e618ae6锟斤拷锟�351e锟斤拷锟�e411锟斤拷锟�8444锟斤拷锟�00155d282801',
+    	 		'userGuid' => '5853b03d锟斤拷锟�ed22锟斤拷锟�e411锟斤拷锟�8d9d锟斤拷锟�00155d282801',
     	 		'order' => $order
     	 ));
 
      	 print $pp;
     }
+    
+    public function GetOrderDetailInfo($order_id)
+    {
+    	$connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+    	$select = $connection->select()
+    	->from('sales_flat_order_item', array('*'))->where('order_id=?',$order_id);
+    	$rowArray =$connection->fetchAll($select);
+    	return $rowArray;
+    }
+    /**
+     Summary ���锟斤拷锟斤拷锟斤拷锟借��锟斤拷锟斤拷锟斤拷��ワ拷锝�锟斤拷锟斤拷锟�.
+     Author  ���锟�Henry.
+     Add Time���锟�2014-09-19.
+     **/
+    public function PackageAction()
+    {
+    	header("Content-Type: text/html; charset=UTF-8");
+    	$postAddress='http://116.247.104.206/order.ashx';
 
+    	$order_id=31;
+    	$orderinfo = $this->getorderbyid($order_id);
+
+    	$user_id = $orderinfo['customer_id'];
+    	$userInfo = $this->GetUserInfo($user_id);
+        
+        $useraddress=$this->GetUserShppingAddress($userInfo->GetData('default_shipping'));
+    	$username = $userInfo->GetData('firstname').'.'.$userInfo->GetData('lastname');
+    	$orderdetailInfor=$this->GetOrderDetailInfo($order_id);
+ 
+        $tel = $useraddress->GetData('fax');
+        $mobile =$useraddress->GetData('telephone');
+		$payamount = $orderinfo['subtotal'];
+    	$timeS =time();
+    	$orderDeital="<?xml version='1.0' encoding='UTF-8'?>
+    			<request>
+    			<action>order</action>
+    			<Timestamp>".$timeS."</Timestamp>
+    			<orderid>".$order_id."</orderid>
+    					<orderfrom>0</orderfrom>
+    					<buyername>".$username."</buyername>
+    					<note></note>
+    							<receiver>
+	    							<name>".$username."</name>
+	    							<tel>".$tel."</tel>
+	    							<mobile>".$mobile."</mobile>
+	    							<province>".$useraddress->GetData('region')."</province>
+	    							<city>".$useraddress->GetData('city')."</city>
+	    							<district>".$useraddress->GetData('region')."</district>
+	    							<address>".$useraddress->GetData('street')."</address>
+	    							<zipcode>".$useraddress->GetData('postcode')."</zipcode>
+    							</receiver>
+    							<barcode></barcode>
+    							<itemcount>2</itemcount>
+	    						<items>";
+								foreach($orderdetailInfor as $or)
+								{
+									$orderDeital = $orderDeital."	
+									<item>
+    									<itemcode>".$or['barcode']."</itemcode>
+    									<itemspec></itemspec>
+										<price>".$or['base_price']."</price>
+    									<num>1</num>
+    								</item>";
+								}
+	    						$orderDeital .="
+	    						</items>
+    							<pay>
+	    							<ispayed>1</ispayed>
+	    							<paydate>".$orderinfo['created_at']."</paydate>
+	    							<payamount>".$orderinfo['subtotal']."</payamount>
+    							</pay>
+    							</request>";
+
+// print $orderDeital;
+// exit();
+        
+     	$encrypt = md5($order_id.$timeS.$payamount.$tel.$mobile.BCKEY);
+		$url = 'http://116.247.104.206/order.ashx?&Encrypt='.$encrypt;
+		
+		$header = "Content-type:application/x-www-form-urlencoded;charset=utf-8";
+		$ch = curl_init(); 
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $orderDeital);
+		
+		$response = curl_exec($ch);
+		
+		if(curl_errno($ch)){
+		
+		    print curl_error($ch);
+		
+		}
+		
+		curl_close($ch); 
+
+		echo $response;
+    	print $content;
+
+    }
+    
+	/**
+     Summary  更新订单接口.
+     Author   Henry.
+     Add Time 014-09-19.
+     **/
+	public function UpdateOrderStatusAction()
+	{
+           
+            $order_id = 30;//$_POST['order_id'];
+			$status='已发货';
+	       
+			$_SOAP = new SoapClient('http://124.205.25.148/m/index.php/api/soap/?wsdl');
+			$sessionId = $_SOAP->login('Henry', '000000');
+			
+ 			return var_export($sessionId);
+			 
+			$shippId = $_SOAP->call($sessionId, 'sales_order.addComment',
+			array($order_id,$status, $comment = null, $notify = false) );
+           
+			echo var_export($shippId);
+
+			$_SOAP->endSession($sessionId);
+	
+		    return var_export($sessionId);
+	
+	}
+    // ������post璇锋��
+    // @param string $url 璇锋����板��
+    // @param array $post_data post�����煎�规�版��
+    // @return string
+    function sendPost($url, $post_data){
+    
+    	// http_build_query()
+    	// ������URL-encode涔�������璇锋��瀛�绗�涓�
+    	//
+    	// 澶�娉�锛�
+    	// php5.3���������绗���ㄧ�����&amp;锛�濡���������������″�ㄤ�����php5.3锛���ｄ��灏变��浼���洪�����
+    	// 浣����濡���������������″�ㄦ��java���tomcat������������锛���ｄ��&amp;�����藉氨浼�澶�������璇����
+    	// 浠ヤ�����褰㈠����藉����垮�����璇�
+    	// http_build_query($post_data, '', '&');
+    
+    	// stream_context_create()
+    	// ���寤哄苟杩����涓�涓�娴����璧�婧�
+    
+    	        $username='username';
+    			$password='password';
+    			$postData = http_build_query($post_data, '', '&');
+    			$options = array(
+    			'http' =>array(
+    			'method'=>"POST",
+    			'header'=>"Accept-language: en\r\n".
+    			"Cookie: foo=bar\r\n".
+    			"Authorization: Basic " . base64_encode("$username:$password").'\r\n',
+    					'content-type'=>"multipart/form-data",
+    					'content' => $postData,
+    					'timeout' => 15 * 60//瓒���舵�堕�达�����浣�:s锛�
+    			)
+    	);
+    	//���寤哄苟杩����涓�涓�娴����璧�婧�
+    			$context = stream_context_create($options);
+    					$result = file_get_contents($url, false, $context);
+    
+    					print  $result;
+    					return $result;
+    }
+    
     /**
      * Check osCommerce order view availability
      *
@@ -1449,16 +1699,16 @@ class OrderAddState extends OrderEnum {
 	const TIME_OUT = -2;
 }
 class OrderState extends OrderEnum {
-	const WAIT_PAYMENT = '等待付款';
-	const COMPLETE = '完成';
-	const CLOSE = '关闭';
-	const CANCEL = '取消';
-	const HOLD_ON = '挂起';
+	const WAIT_PAYMENT = '缁�锟藉�帮拷娴�锟藉��锟�';
+	const COMPLETE = '��癸拷锟斤拷锟�';
+	const CLOSE = '锟斤拷��斤拷锟�';
+	const CANCEL = '锟斤拷锟藉��锟�';
+	const HOLD_ON = '锟斤拷锟界�э拷';
 	const No = 0;
 	const Yes = 1;
 }
 /**
- * @Summary :地址类型.
+ * @Summary :锟斤拷��匡拷锟界猾璇诧拷锟�.
  * @author  :Henry.
  * @Add time:2014-09-05.
  */
@@ -1468,7 +1718,7 @@ class Enum_AddressType
 	const Shipping =1;
 }
 /**
- * @Summary :产品数据实体.
+ * @Summary :娴���锟斤拷锟斤拷���锟斤拷��癸拷娴ｏ拷.
  * @author  :Henry.
  * @Add time:2014-09-05.
  */

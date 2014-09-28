@@ -195,7 +195,7 @@ class Mage_Sales_Helper_Data extends Mage_Core_Helper_Data
     	
     	$select1 = $connection->select()
     	->from('sales_flat_quote', array('items_qty'))->where('entity_id=?',$orderId);
-    	$rowsArray1 = $connection->fetchAll($select);
+    	$rowsArray1 = $connection->fetchAll($select1);
     	
     	foreach($rowsArray as $p)
     	{
@@ -207,7 +207,7 @@ class Mage_Sales_Helper_Data extends Mage_Core_Helper_Data
     		$PM->product_id=(string) $product['$product_id'];
     		$PM->img=(string) $product['image'];
     		$PM->sku = (string) $product['sku'];
-    		$PM->Qty = (string) $rowsArray1['items_qty'];
+    		$PM->Qty = (string) $rowsArray1[0]['items_qty'];
     		array_push($productList,$PM);
     	}
         return $productList;

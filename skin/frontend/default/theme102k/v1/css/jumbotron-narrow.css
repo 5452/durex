@@ -1,10 +1,10 @@
 /* Space out content a bit */
 body {
-/*  padding-top: 20px;*/
+ padding-top: 20px;
   /*放射型渐变*/
-  background:#0370b7;
+ background:#0370b7;
   background:radial-gradient(#3bc1e9,#0370b7) 100%;
-  /*min-height: 1000px;*/
+  min-height: 1000px;
   color:white;
 }
 
@@ -258,19 +258,20 @@ p.order_state{
 }
 .radius_button{
   float:right;
-  width: 32%;
+  width: 24%;
   height: 32px;
   border-radius: 20px;
   background: #f7c02b;
   display: inline-block;
   text-align:left;
   text-indent: 5px;
-  line-height: 27px;
+  line-height: 30px;
   box-shadow: 4px 4px 5px #333;
   text-decoration: none;
   color:white;
   font-size: 20px;
   font-weight: 500;
+  margin: auto 10px;
 }
 .ord_btn1{
 
@@ -435,6 +436,11 @@ p.order_state{
 }
 label{
   font-weight: 400;
+}
+.mobilegoodsimg{
+  width:176px;
+  overflow:hidden;
+  display: inline-block!important;
 }
 .order_list{
   margin-left:0!important;

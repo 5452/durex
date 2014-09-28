@@ -24,17 +24,21 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="footer-container">
+
+<!-- <div id="footer" class="footer-wrapper">
     <div class="footer">
-							<?php echo $this->getChildHtml('footer_block') ?>
-							<div class="footer_row">
-        <address>
-        <?php //echo $this->getCopyright() ?> <?php $current_page = Mage::app()->getFrontController()->getRequest()->getRouteName(); 
-        if ($current_page == 'cms'):
-        echo '2011-13  |   ALL RIGHTS RESERVED';
-        endif;
-        ?>
-        </address>
-       </div>
+        <span class="footer-info pull-left">© 2014 Reckitt Benckiser. All rights reserved</span>
+        <div class="footer-share pull-right">
+            <a href="###"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/sinaweibo.png"></a>
+            <a href="###"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/douban.png"></a>
+            <a href="###"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/weiboten.png"></a>
+            <a href="###"><img src="<?php echo $this->getSkinUrl('') ?>v1/images/renren.png"></a>
+        </div>
     </div>
-</div>
+</div> -->
+<script src="<?php echo $this->getSkinUrl('') ?>dist/js/bootstrap.min.js"></script>
+<style>
+#habla_expanded_div div{display:none}
+#habla_expanded_div #habla_middle_div{display:block}
+#habla_expanded_div #habla_middle_div div{display:block}
+</style>

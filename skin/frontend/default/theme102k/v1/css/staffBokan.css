@@ -59,6 +59,7 @@
 
         .col-md-2 img{
           width: 90px;
+          overflow: hidden;
         }
 
         .pro_name{
@@ -101,6 +102,7 @@
 
         .radius_button{
           width: 48%;
+          margin-bottom: 6px;
         }
         .page_titile{
           font-size: 24px;

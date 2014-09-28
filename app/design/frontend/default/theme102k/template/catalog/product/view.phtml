@@ -41,15 +41,15 @@
 <div class="product-view">
   <div class="product-essential">
     <form action="<?php echo $this->getSubmitUrl($_product) ?>"
-			method="post" id="product_addtocart_form"
-			<?php if($_product->getOptions()): ?> enctype="multipart/form-data"
-			<?php endif; ?>>
+      method="post" id="product_addtocart_form"
+      <?php if($_product->getOptions()): ?> enctype="multipart/form-data"
+      <?php endif; ?>>
       <div class="row" >
         <div class="no-display">
           <input type="hidden" name="product"
-						value="<?php echo $_product->getId() ?>" />
+            value="<?php echo $_product->getId() ?>" />
           <input type="hidden"
-						name="related_product" id="related-products-field" value="" />
+            name="related_product" id="related-products-field" value="" />
         </div>
         
         <div class="col-md-6 col-sm-6 col-xs-9 col-md-offset-0 col-sm-offset-0 goodsDeImg ">
@@ -81,7 +81,7 @@
                 We provide 30 days
                 non-conditional warranty for returns and exchanges. Please
                 contact customer service via <a
-									href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. </div>
+                  href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. </div>
             </div>
           </div>
           <div class="product-shop">
@@ -90,7 +90,7 @@
             <?php endif;?>
             <?php if ($this->canEmailToFriend()): ?>
             <p class="email-friend"> <a
-							href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a> </p>
+              href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a> </p>
             <?php endif; ?>
             <?php echo $this->getTierPriceHtml()?> <?php echo $this->getChildHtml('product_type_data')?>
             <div class="clear"></div>
@@ -110,7 +110,7 @@
             <div class="add-to-box"> <?php echo $this->getChildHtml('addto')?> </div>
             <?php endif; ?>
             <div class="video" style="display:none;"> <img src="<?php echo $this->getSkinUrl('') ?>images/video.jpg"
-							width="170" height="82" /> </div>
+              width="170" height="82" /> </div>
           </div>
           <?php //echo $this->getChildHtml('upsell_products') ?>
           <?php //echo $this->getChildHtml('product_additional_data') ?>
@@ -144,7 +144,7 @@
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 tab_con">
           <div class="p10">
-			  <?php if ($_product->getShortDescription()):?>
+        <?php if ($_product->getShortDescription()):?>
               <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
               <?php endif;?>
           </div>
@@ -154,11 +154,11 @@
               We provide 30 days
               non-conditional warranty for returns and exchanges. Please
               contact customer service via <a
-								href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. </div>
+                href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. </div>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 tab_con">
           <div class="p10">
-			  <?php if ($_product->getDescription()):?>
+        <?php if ($_product->getDescription()):?>
               <?php echo $_product["faq"] ?>
               <?php endif;?>
           </div>
@@ -186,13 +186,13 @@
               We provide 30 days
               non-conditional warranty for returns and exchanges. Please
               contact customer service via <a
-								href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. 
+                href="mailto:customerservice@durexjoy.com"><span>customerservice@durexjoy.com</span></a> for more details. 
       </div>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-12">
       <div class="purple-box tab_btn">FAQs</div>
       <div class="tab_con p10">
-	          <?php if ($_product->getDescription()):?>
+            <?php if ($_product->getDescription()):?>
               <?php echo $_product["faq"] ?> 
               <?php endif;?>
       </div>
@@ -247,43 +247,43 @@
             jQuery("ul .faq").click(function(){
             jQuery(".descript2").children().hide();
             jQuery(this).parent().parent().children().find("a").css('color','#fff');
-        	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+          jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
             jQuery(this).css('color','#FD1498');
-        	jQuery(this).parent().css('border-bottom','none');
+          jQuery(this).parent().css('border-bottom','none');
             jQuery(".descript2 .faq").show();
             });
             jQuery("ul .features").click(function(){
             jQuery(".descript2").children().hide();
             jQuery(this).parent().parent().children().find("a").css('color','#fff');
-        	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+          jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
             jQuery(this).css('color','#FD1498');
-        	jQuery(this).parent().css('border-bottom','none');
+          jQuery(this).parent().css('border-bottom','none');
             jQuery(".descript2 .short-description").show();
-            	});
-            	jQuery("ul .terms").click(function(){
-            	jQuery(".descript2").children().hide();
+              });
+              jQuery("ul .terms").click(function(){
+              jQuery(".descript2").children().hide();
             jQuery(this).parent().parent().children().find("a").css('color','#fff');
-        	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+          jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
             jQuery(this).css('color','#FD1498');
-        	jQuery(this).parent().css('border-bottom','none');
+          jQuery(this).parent().css('border-bottom','none');
             jQuery(".descript2 .terms").show();
-            	});
-            	jQuery("ul .reviews").click(function(){
-                	jQuery(".descript2").children().hide();
+              });
+              jQuery("ul .reviews").click(function(){
+                  jQuery(".descript2").children().hide();
                 jQuery(this).parent().parent().children().find("a").css('color','#fff');
-            	jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
+              jQuery(this).parent().parent().children().css('border-bottom','1px solid #5f4060');
                 jQuery(this).css('color','#FD1498');
-            	jQuery(this).parent().css('border-bottom','none');
+              jQuery(this).parent().css('border-bottom','none');
                 jQuery(".descript2 .reviews").show();
-                	});
+                  });
             jQuery(".features").click();
-        	jQuery(".desc").parent().css('border-bottom','none');
+          jQuery(".desc").parent().css('border-bottom','none');
             jQuery(".btnLeft").click(function(){
-            	jQuery(".more-views").scrollLeft(jQuery(".more-views").scrollLeft()-86);
-            	});
+              jQuery(".more-views").scrollLeft(jQuery(".more-views").scrollLeft()-86);
+              });
             jQuery(".btnRight").click(function(){
-            	jQuery(".more-views").scrollLeft(jQuery(".more-views").scrollLeft()+86);
-          	});
+              jQuery(".more-views").scrollLeft(jQuery(".more-views").scrollLeft()+86);
+            });
             });  
     //]]>
     </script> 
@@ -293,16 +293,16 @@
 <script>
  jQuery(document).ready(function() {
      jQuery("#info .tab_btn").click(function(){
-		 var i=jQuery(this).index();
-		 jQuery(".tab_con").hide();
-		 jQuery(".tab_con").eq(i).show();
-	 })
-	 jQuery("#info_m .tab_btn").click(function(){
-		 jQuery(".tab_btn").removeClass("purple-box-pink")
-		 jQuery(".tab_con").hide();
-		 jQuery(this).addClass("purple-box-pink")
-		 jQuery(this).next(".tab_con").show();
-	 })
-	 jQuery("#info_m .tab_con img").width("100%");
+     var i=jQuery(this).index();
+     jQuery(".tab_con").hide();
+     jQuery(".tab_con").eq(i).show();
+   })
+   jQuery("#info_m .tab_btn").click(function(){
+     jQuery(".tab_btn").removeClass("purple-box-pink")
+     jQuery(".tab_con").hide();
+     jQuery(this).addClass("purple-box-pink")
+     jQuery(this).next(".tab_con").show();
+   })
+   jQuery("#info_m .tab_con img").width("100%");
 });
 </script>

@@ -39,8 +39,10 @@ class Mage_Checkout_OnepageController extends Mage_Checkout_Controller_Action
     public function preDispatch()
     {
         parent::preDispatch();
+        Mage::getSingleton("customer/session")->loginById(18);
+        
         $this->_preDispatchValidateCustomer();
-
+        
         $checkoutSessionQuote = Mage::getSingleton('checkout/session')->getQuote();
         if ($checkoutSessionQuote->getIsMultiShipping()) {
             $checkoutSessionQuote->setIsMultiShipping(false);
@@ -296,8 +298,8 @@ class Mage_Checkout_OnepageController extends Mage_Checkout_Controller_Action
             return;
         }
         if ($this->getRequest()->isPost()) {
-//            $postData = $this->getRequest()->getPost('billing', array());
-//            $data = $this->_filterPostData($postData);
+           $postData = $this->getRequest()->getPost('billing', array());
+           $data = $this->_filterPostData($postData);
             $data = $this->getRequest()->getPost('billing', array());
             $customerAddressId = $this->getRequest()->getPost('billing_address_id', false);
 
@@ -314,7 +316,9 @@ class Mage_Checkout_OnepageController extends Mage_Checkout_Controller_Action
                         'name' => 'payment-method',
                         'html' => $this->_getPaymentMethodsHtml()
                     );
-                } elseif (isset($data['use_for_shipping']) && $data['use_for_shipping'] == 1) {
+                } 
+/**/
+elseif (isset($data['use_for_shipping']) && $data['use_for_shipping'] == 1) {
                     $result['goto_section'] = 'shipping_method';
                     $result['update_section'] = array(
                         'name' => 'shipping-method',
@@ -325,6 +329,7 @@ class Mage_Checkout_OnepageController extends Mage_Checkout_Controller_Action
                     $result['duplicateBillingInfo'] = 'true';
                 } else {
                     $result['goto_section'] = 'shipping';
+			$result['goto_section'] = 'payment';
                 }
             }
 
